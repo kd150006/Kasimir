@@ -1,0 +1,9 @@
+0 Article#
+1 Name
+2 GrossPrice
+3 NetPrice
+4 Tax
+5 Barcode
+6 SerialNumber
+7 Stock
+8 Quantity
