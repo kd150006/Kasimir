@@ -1,0 +1,33 @@
+{
+	"info": {
+		"name": "WebApi.Delete.Tests",
+		"_postman_id": "00c72377-ea36-e5a9-26f0-1735694e1696",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get productType by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/ProductTypes/1025",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"ProductTypes",
+						"1025"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

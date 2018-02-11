@@ -1,0 +1,249 @@
+{
+	"info": {
+		"name": "WebApi.Post.Tests",
+		"_postman_id": "450340f9-d9fe-5e1b-8e59-3713bc5a87dc",
+		"description": "Testing all POSTs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST ProductType",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"A\",\n    \"number\": \"PSTMNTSTPRDCTTP\",\n    \"name\": \"POSTMAN Test ProductType\",\n    \"grossPrice\": 99,\n    \"netPrice\": 99,\n    \"barcode\": \"\",\n    \"productTypes2Products\": [],\n    \"isActive\": true,\n}"
+				},
+				"url": {
+					"raw": "http://localhost:52035/api/productTypes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"productTypes",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Stock",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"A\",\n    \"name\": \"POSTMAN Test Stock\",\n    \"quantity\": 0,\n    \"isActive\": true,\n    \"stocks2Products\": [],\n}"
+				},
+				"url": {
+					"raw": "http://localhost:52035/api/Stocks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Stocks",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"A\",\n    \"firstName\": \"Martin\",\n    \"lastName\": \"Kletsch\",\n    \"number\": \"001\",\n    \"telephoneNumber\": 357159,\n    \"emailAddress\": \"m@k.com\",\n    \"isActive\": true,\n}"
+				},
+				"url": {
+					"raw": "http://localhost:52035/api/Customers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Customers",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST CashDrawer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"status\": \"A\",\r\n\t\"name\": \"POSTMAN Test CashDrawer\",               \r\n\t\"amount\": 777,        \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:52035/api/CashDrawers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"CashDrawers",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST MeansOfPayment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"status\": \"A\",\r\n\t\"name\": \"POSTMAN Test MeansOfPayment\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:52035/api/MeansOfPayments/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"MeansOfPayments",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"status\": \"A\",\r\n\t\"firstname\": \"POST\",\r\n\t\"lastname\": \"MAN\",\r\n\t\"login\": \"PSTMN\",\r\n\t\"password\": \"12345\",\r\n\t\"isadmin\": false\r\n}\r\n{\r\n\t\"status\": \"A\",\r\n\t\"firstname\": \"POST\",\r\n\t\"lastname\": \"MAN\",\r\n\t\"login\": \"PSTMNADM\",\r\n\t\"password\": \"12345\",\r\n\t\"isadmin\": true\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:52035/api/Users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Users",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST User Admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"status\": \"A\",\r\n\t\"firstname\": \"POST\",\r\n\t\"lastname\": \"MAN\",\r\n\t\"login\": \"PSTMNADM\",\r\n\t\"password\": \"12345\",\r\n\t\"isadmin\": true\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:52035/api/Users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Users",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fc5b2c97-f660-4a03-b913-03287d89d11f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eb77b118-0b60-4d4c-a53a-c77b711fd972",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

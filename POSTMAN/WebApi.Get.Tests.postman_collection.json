@@ -1,0 +1,354 @@
+{
+	"info": {
+		"name": "WebApi.Get.Tests",
+		"_postman_id": "4f6a8a7a-182f-088b-5404-e6038ba4e106",
+		"description": "Test all Get requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get ProductTypes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/ProductTypes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"ProductTypes",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get ProductTypes2Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/ProductTypes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"ProductTypes",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get ProductTypes2Products by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/ProductTypes2Products/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"ProductTypes2Products",
+						"6"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"products"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/products/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"products",
+						"7"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get ProductQuantity by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/products/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"products",
+						"7"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/Users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Users",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get productType by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/ProductTypes/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"ProductTypes",
+						"6"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stock by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/Stocks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Stocks",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stocks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/Stocks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Stocks",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/Customers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Customers",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/Customers/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Customers",
+						"3"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Journals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/Journals/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Journals",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Journal by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/Journals/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"Journals",
+						"3"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get CashDrawers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52035/api/CashDrawers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52035",
+					"path": [
+						"api",
+						"CashDrawers",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
