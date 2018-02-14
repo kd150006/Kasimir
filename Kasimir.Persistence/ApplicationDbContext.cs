@@ -12,12 +12,11 @@ namespace Kasimir.Persistence
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Stock> Stocks { get; set; }
-        public DbSet<BasketHeader> BasketHeaders { get; set; }
-        public DbSet<BasketDetail> BasketDetails { get; set; }
+        public DbSet<BasketHeader> BasketHeaders { get; set; }        
         public DbSet<Journal> Journals { get; set; }
         public DbSet<CashDrawer> CashDrawers { get; set; }
         public DbSet<MeansOfPayment> MeansOfPayments { get; set; }        
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

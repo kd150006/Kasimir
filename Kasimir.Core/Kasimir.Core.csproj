@@ -8,4 +8,8 @@
     <ProjectReference Include="..\MyFileUtils\MyFileUtils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+  </ItemGroup>
+
 </Project>

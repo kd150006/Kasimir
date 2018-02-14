@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Kasimir.Core.Entities.Product">
+    <Position X="5.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAUAQAAAAAAEAAAAAAAgAEAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProductType" />
+      <Property Name="Stock" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Kasimir.Core.Entities.ProductType">
+    <Position X="0.5" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAEAAAAAEEBAAAQAAAAACAAAgAAAAAAAAAA=</HashCode>
+      <FileName>ProductType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ProductTypes2Products" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Kasimir.Core.Entities.Stock">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAECAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stock.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Stocks2Products" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Kasimir.Core.DataTransferObjects.BasketDto">
+    <Position X="5.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAQAAQAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>BasketDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kasimir.Core.Entities.BasketHeader">
+    <Position X="8" Y="3.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BasketHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -46,8 +46,7 @@ namespace Kasimir.Persistence.Repositories
 
         public IEnumerable<BasketHeader> GetAll()
         {
-            return _dbContext.BasketHeaders
-                .Include(basketHeaders => basketHeaders.BasketDetails)
+            return _dbContext.BasketHeaders                
                 .ToList();
         }
 

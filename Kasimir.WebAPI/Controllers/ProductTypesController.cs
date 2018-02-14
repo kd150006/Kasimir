@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 using Kasimir.Core.Contracts;
 using Kasimir.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace Kasimir.WebAPI.Controllers
     public class ProductTypesController : Controller
     {
         private readonly IUnitOfWork _uow;
+        private readonly IMapper _mapper;
         public ProductTypesController(IUnitOfWork uow)
         {
             _uow = uow;
@@ -22,9 +24,9 @@ namespace Kasimir.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<ProductType> Get()
         {
-            var products = _uow.ProductTypeRepository.GetAllWithProducts();
+            var products = _uow.ProductTypeRepository.GetAllWithProductsAndStocks();
             //var products = _uow.ProductTypeRepository.GetAll();
-            return products;
+            return (products);
         }
 
         // GET producttypes/7

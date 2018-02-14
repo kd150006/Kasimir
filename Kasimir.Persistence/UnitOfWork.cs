@@ -23,9 +23,9 @@ namespace Kasimir.Persistence
             ProductRepository = new ProductRepository(_dbContext);
             ProductTypeRepository = new ProductTypeRepository(_dbContext);
             StockRepository = new StockRepository(_dbContext);
-            UserRepository = new UserRepository(_dbContext);
+            UserRepository = new UserRepository(_dbContext);            
         }
-        public IBasketRepository BasketHeaderRepository { get; }
+        public IBasketRepository BasketHeaderRepository { get; }       
         public ICashDrawerRepository CashDrawerRepository { get; }
         public ICustomerRepository CustomerRepository { get; }
         public IJournalRepository JournalRepository { get; }

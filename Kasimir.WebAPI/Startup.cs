@@ -26,9 +26,15 @@ namespace Kasimir.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AutoMapper
+
+
             services.AddCors();
             services.AddScoped<IUnitOfWork, UnitOfWork>(serviceProvider => new UnitOfWork());
-            services.AddMvc();
+            //Needs to be configured because of ef core many to many relationships handling. JSON will loop and cause connection error when not configured
+            services.AddMvc()
+                    .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

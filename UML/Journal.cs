@@ -7,15 +7,19 @@ using System.Text;
 
 namespace Kasimir.Core.Entities
 {
-    public class BasketDetail : IEntity
+    public class Journal: IEntity
     {
-        public int BasketHeaderId { get; set; }
         [Required]
+        public DateTime DateOfTransaction { get; set; }
+        [Required, MaxLength(1)]
+        public string  TransactionType { get; set; }
+        public int BasketHeaderId { get; set; }
         [ForeignKey(nameof(BasketHeaderId))]
         public BasketHeader BasketHeader { get; set; }
-        public int ProductId { get; set; }        
-        public int StockId { get; set; }        
-        public int Quantity { get; set; }
 
+        public object SingleOrDefault()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

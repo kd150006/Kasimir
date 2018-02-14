@@ -51,10 +51,11 @@ namespace Kasimir.Persistence.Repositories
             return _dbContext.ProductTypes.Where(productType => productType.Status == status);
         }
 
-        public IEnumerable<ProductType> GetAllWithProducts()
+        public IEnumerable<ProductType> GetAllWithProductsAndStocks()
         {
             return _dbContext.ProductTypes
                 .Include(productTypes => productTypes.ProductTypes2Products)
+                    .ThenInclude(productTypesWithProducts => productTypesWithProducts.Stock)
                 .ToList();
         }
 
@@ -74,6 +75,15 @@ namespace Kasimir.Persistence.Repositories
                 .Where(productType => productType.Id == id)
                 .Include(foundProductType => foundProductType.ProductTypes2Products)                
                 .SingleOrDefault();
+        }
+
+        public ProductType GetByIdWithProductsAndStocks(int id)
+        {
+            return _dbContext.ProductTypes
+                .Include(productType => productType.ProductTypes2Products)
+                    .ThenInclude(productTypeWithProducts => productTypeWithProducts.Stock)
+                .Where(productType => productType.Id == id)
+                .SingleOrDefault();                
         }
 
         public IEnumerable<ProductType> GetByName(string name)

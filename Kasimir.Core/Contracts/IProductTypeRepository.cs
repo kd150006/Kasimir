@@ -18,7 +18,8 @@ namespace Kasimir.Core.Contracts
         IEnumerable<ProductType> GetByName(string name);
         IEnumerable<ProductType> GetByBarcode(string barcode);
         IEnumerable<ProductType> GetByStatus(string status);
-        IEnumerable<ProductType> GetAllWithProducts();
+        IEnumerable<ProductType> GetAllWithProductsAndStocks();
         ProductType GetByIdWithProducts(int id);
+        ProductType GetByIdWithProductsAndStocks(int id);
     }
 }

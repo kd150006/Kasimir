@@ -1,7 +1,5 @@
-﻿using Kasimir.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -9,14 +7,15 @@ namespace Kasimir.Core.DataTransferObjects
 {
     [NotMapped]
     public class BasketDto
-    {        
-        public string ProductNumber { get; set; }
-        public string ProductName { get; set; }
-        public int ProductQuantity { get; set; }       
+    {
+        //ProductType: Name, Nummer, Status
+        //Product: SerialNumber, Status?
+        //Stock: Name
+
+        // Alle 3 FKs laden 
+        public string ProductTypeName { get; set; }
+        public string ProductTypeNumber { get; set; }
         public string ProductSerialNumber { get; set; }
-        public string ProductStock { get; set; }
-        public double ProductPrice { get; set; }
-        public string ProductStatus { get; set; }
-        public string TransactionType { get; set; }        
+        public string StockName { get; set; }
     }
 }

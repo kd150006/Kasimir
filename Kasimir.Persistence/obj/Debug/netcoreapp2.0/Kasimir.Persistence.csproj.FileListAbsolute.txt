@@ -1,0 +1,17 @@
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\appsettings.json
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Articles.csv
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Kasimir.Persistence.deps.json
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Kasimir.Persistence.runtimeconfig.json
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Kasimir.Persistence.runtimeconfig.dev.json
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Kasimir.Persistence.dll
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Kasimir.Persistence.pdb
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Kasimir.Core.dll
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\MyFileUtils.dll
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\Kasimir.Core.pdb
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\bin\Debug\netcoreapp2.0\MyFileUtils.pdb
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\obj\Debug\netcoreapp2.0\Kasimir.Persistence.csprojResolveAssemblyReference.cache
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\obj\Debug\netcoreapp2.0\Kasimir.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\obj\Debug\netcoreapp2.0\Kasimir.Persistence.AssemblyInfoInputs.cache
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\obj\Debug\netcoreapp2.0\Kasimir.Persistence.AssemblyInfo.cs
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\obj\Debug\netcoreapp2.0\Kasimir.Persistence.dll
+C:\Users\mkl\source\repos\Kasimir\Kasimir.Persistence\obj\Debug\netcoreapp2.0\Kasimir.Persistence.pdb
