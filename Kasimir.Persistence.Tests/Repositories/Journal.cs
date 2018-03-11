@@ -9,7 +9,7 @@ using System.Text;
 namespace Kasimir.Persistence.Tests
 {
     [TestClass]
-    public class Journal
+    public class JournalTests
     {
 
 
@@ -20,13 +20,6 @@ namespace Kasimir.Persistence.Tests
             dbContext.Database.EnsureDeleted();
             dbContext.Database.Migrate();
             dbContext.Database.EnsureCreated();
-
-            using (UnitOfWork uow = new UnitOfWork())
-            {
-                var productTypes = ImportController.ReadProductTypesFromCsv().ToList();
-                uow.ProductTypeRepository.AddRange(productTypes);
-                uow.Save();
-            }
         }
 
         [TestMethod]

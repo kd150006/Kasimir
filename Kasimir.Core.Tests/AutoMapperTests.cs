@@ -11,9 +11,10 @@ namespace Kasimir.Core.Tests
         [TestMethod]
         public void AutoMapper_001_Foo()
         {
-            var config = AutoMapperConfiguration.Configure();
+            //var config = AutoMapperConfiguration.Configure();
 
-            config.AssertConfigurationIsValid();
+            //config.AssertConfigurationIsValid();
+            throw new NotImplementedException();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Kasimir.Persistence.Repositories
 {
-    public class BasketHeaderRepository : IBasketRepository
+    public class BasketHeaderRepository : IBasketHeaderRepository
     {
         private readonly ApplicationDbContext _dbContext;
         private List<Product> basketList;
@@ -48,6 +48,27 @@ namespace Kasimir.Persistence.Repositories
         {
             return _dbContext.BasketHeaders                
                 .ToList();
+        }
+
+        public BasketHeader GetById(int id)
+        {
+            return _dbContext.BasketHeaders.Find(id);
+        }
+
+        public BasketHeader GetByIdWithDetails(int id)
+        {
+            return _dbContext.BasketHeaders
+                .Include(basketHeader => basketHeader.BasketDetails)
+                .Where(basketHeader => basketHeader.Id == id)
+                .SingleOrDefault();
+        }
+
+        public int GetLastInsertedBasketHeaderId()
+        {
+            return _dbContext.BasketHeaders
+                .OrderByDescending(basketHeader => basketHeader.Id)
+                .Select(basketHeader => basketHeader.Id)
+                .FirstOrDefault();
         }
 
         public void RemoveFromBasket(Product product)

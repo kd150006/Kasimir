@@ -10,8 +10,8 @@ namespace Kasimir.Core.Tests
         [TestMethod]
         public void ImportController_001_ShouldReturn24ProductTypes()
         {
-            var productTypes = ImportController.ReadProductTypesFromCsv();
-            Assert.AreEqual(24, productTypes.Count());
+            var products = ImportController.ReadProductsFromCsv();
+            Assert.AreEqual(24, products.Count());
         }
     }
 }

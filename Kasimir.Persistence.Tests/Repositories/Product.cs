@@ -29,14 +29,14 @@ namespace Kasimir.Persistence.Tests
             //}
         }
 
-        [TestMethod]
-        public void ProductRepoTest_001_GetAllProductsWithProductTypes_ShouldReturn20ProductsWithDetails()
-        {
-            using (UnitOfWork uow = new UnitOfWork())
-            {
-                var products = uow.ProductRepository.GetAll();
-                Assert.AreEqual(20, products.Count());
-            }
-        }
+        //[TestMethod]
+        //public void ProductRepoTest_001_GetAllProductsWithProductTypes_ShouldReturn20ProductsWithDetails()
+        //{
+        //    using (UnitOfWork uow = new UnitOfWork())
+        //    {
+        //        var products = uow.ProductRepository.GetAll();
+        //        Assert.AreEqual(20, products.Count());
+        //    }
+        //}
     }
 }

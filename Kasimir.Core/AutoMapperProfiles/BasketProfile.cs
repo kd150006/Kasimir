@@ -11,7 +11,7 @@ namespace Kasimir.Core.AutoMapperProfiles
     {
         public BasketProfile()
         {
-            CreateMap<ProductType, BasketDto>();
+            CreateMap<Product, BasketDto>();
         }
     }
 }

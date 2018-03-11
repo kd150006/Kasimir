@@ -15,23 +15,23 @@ namespace Kasimir.Persistence
         public UnitOfWork()
         {
             _dbContext = new ApplicationDbContext();
+            BasketDetailRepository = new BasketDetailRepository(_dbContext);
             BasketHeaderRepository = new BasketHeaderRepository(_dbContext);
             CashDrawerRepository = new CashDrawerRepository(_dbContext);
             CustomerRepository = new CustomerRepository(_dbContext);
             JournalRepository = new JournalRepository(_dbContext);
             MeansOfPaymentRepository = new MeansOfPaymentRepository(_dbContext);
-            ProductRepository = new ProductRepository(_dbContext);
-            ProductTypeRepository = new ProductTypeRepository(_dbContext);
+            ProductRepository = new ProductRepository(_dbContext);            
             StockRepository = new StockRepository(_dbContext);
             UserRepository = new UserRepository(_dbContext);            
         }
-        public IBasketRepository BasketHeaderRepository { get; }       
+        public IBasketDetailRepository BasketDetailRepository { get; }
+        public IBasketHeaderRepository BasketHeaderRepository { get; }       
         public ICashDrawerRepository CashDrawerRepository { get; }
         public ICustomerRepository CustomerRepository { get; }
         public IJournalRepository JournalRepository { get; }
         public IMeansOfPaymentRepository MeansOfPaymentRepository { get; }
-        public IProductRepository ProductRepository { get; }
-        public IProductTypeRepository ProductTypeRepository { get; }
+        public IProductRepository ProductRepository { get; }        
         public IStockRepository StockRepository { get; }
         public IUserRepository UserRepository { get; }
 

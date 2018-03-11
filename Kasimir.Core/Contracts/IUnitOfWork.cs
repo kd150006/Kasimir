@@ -6,13 +6,13 @@ namespace Kasimir.Core.Contracts
 {
     public interface IUnitOfWork : IDisposable
     {
-        IBasketRepository BasketHeaderRepository { get; }
+        IBasketDetailRepository BasketDetailRepository { get; }
+        IBasketHeaderRepository BasketHeaderRepository { get; }
         ICashDrawerRepository CashDrawerRepository { get; }
         ICustomerRepository CustomerRepository { get; }
         IJournalRepository JournalRepository { get; }
         IMeansOfPaymentRepository MeansOfPaymentRepository { get; }
-        IProductRepository ProductRepository { get; }
-        IProductTypeRepository ProductTypeRepository { get; }
+        IProductRepository ProductRepository { get; }        
         IStockRepository StockRepository { get; }
         IUserRepository UserRepository { get; }
 

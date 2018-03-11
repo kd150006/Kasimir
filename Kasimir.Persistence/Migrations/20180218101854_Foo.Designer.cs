@@ -11,9 +11,10 @@ using System;
 namespace Kasimir.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180218101854_Foo")]
+    partial class Foo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,25 +28,13 @@ namespace Kasimir.Persistence.Migrations
 
                     b.Property<int>("BasketHeaderId");
 
-                    b.Property<int>("ProductId");
-
-                    b.Property<double>("ProductPrice");
-
-                    b.Property<string>("ProductSerialNumber");
-
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<int?>("StockId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BasketHeaderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("StockId");
 
                     b.ToTable("BasketDetails");
                 });
@@ -293,15 +282,6 @@ namespace Kasimir.Persistence.Migrations
                         .WithMany("BasketDetails")
                         .HasForeignKey("BasketHeaderId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Kasimir.Core.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Kasimir.Core.Entities.Stock", "Stock")
-                        .WithMany()
-                        .HasForeignKey("StockId");
                 });
 
             modelBuilder.Entity("Kasimir.Core.Entities.CashDrawer", b =>

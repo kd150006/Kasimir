@@ -11,44 +11,15 @@ using System;
 namespace Kasimir.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180214232651_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Kasimir.Core.Entities.BasketDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BasketHeaderId");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<double>("ProductPrice");
-
-                    b.Property<string>("ProductSerialNumber");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.Property<int?>("StockId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasketHeaderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("StockId");
-
-                    b.ToTable("BasketDetails");
-                });
 
             modelBuilder.Entity("Kasimir.Core.Entities.BasketHeader", b =>
                 {
@@ -183,6 +154,8 @@ namespace Kasimir.Persistence.Migrations
 
                     b.Property<string>("Barcode");
 
+                    b.Property<double>("GrossPrice");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255);
@@ -285,23 +258,6 @@ namespace Kasimir.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Kasimir.Core.Entities.BasketDetail", b =>
-                {
-                    b.HasOne("Kasimir.Core.Entities.BasketHeader", "BasketHeader")
-                        .WithMany("BasketDetails")
-                        .HasForeignKey("BasketHeaderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Kasimir.Core.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Kasimir.Core.Entities.Stock", "Stock")
-                        .WithMany()
-                        .HasForeignKey("StockId");
                 });
 
             modelBuilder.Entity("Kasimir.Core.Entities.CashDrawer", b =>

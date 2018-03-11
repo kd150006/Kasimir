@@ -30,7 +30,8 @@ namespace Kasimir.WebAPI.Controllers
         [HttpGet("{id}")]
         public Stock Get(int id)
         {
-            var stock = _uow.StockRepository.GetById(id).SingleOrDefault();
+            //var stock = _uow.StockRepository.GetById(id).SingleOrDefault();
+            var stock = _uow.StockRepository.GetStockByIdWithProducts(id);
             return (stock);
         }
 
@@ -52,17 +53,16 @@ namespace Kasimir.WebAPI.Controllers
         // PUT: api/Stocks/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Stock stock)
-        {
-            var stockToUpdate = _uow.StockRepository.GetById(id).SingleOrDefault();
-            _uow.StockRepository.Update(stockToUpdate);
+        {            
+            _uow.StockRepository.Update(stock);
             _uow.Save();
         }
         
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Stocks/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var stock = _uow.StockRepository.GetById(id).SingleOrDefault();
+            var stock = _uow.StockRepository.GetById(id);
             _uow.StockRepository.Delete(stock);
             _uow.Save();
         }

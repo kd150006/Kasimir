@@ -7,23 +7,21 @@ using System.Text;
 
 namespace Kasimir.Core.Entities
 {
-    public class Stock : IEntity
+    public class SerialNumber : IEntity
     {
+        [Required]
+        public string SerialNumberText { get; set; }
         [Required, MaxLength(1)]
         public string Status { get; set; }
-        [Required, MaxLength(255)]
-        public string Name { get; set; }
-        //Quantity will be calculated by amount of rows in entity 'Product' ?
-        //public int Quantity { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public int ProductId { get; set; }
+        [Required]
+        [ForeignKey(nameof(ProductId))]
+        public Product Product { get; set; }
         [NotMapped]
         public bool IsActive
         {
             get { return Status == ItemStatus.Active; }
             set { Status = value ? ItemStatus.Active : ItemStatus.Inactive; }
-        }
-        public Stock()
-        {            
         }
     }
 }

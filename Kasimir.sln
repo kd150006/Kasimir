@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kasimir.Web.Admin", "Kasimi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kasimir.WebAPI", "Kasimir.WebAPI\Kasimir.WebAPI.csproj", "{13FC0188-BE0B-45F0-B4A8-96D3463A821F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UML", "UML\UML.csproj", "{74E80571-0332-46EB-A8F3-46A936E281AD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{13FC0188-BE0B-45F0-B4A8-96D3463A821F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13FC0188-BE0B-45F0-B4A8-96D3463A821F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13FC0188-BE0B-45F0-B4A8-96D3463A821F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74E80571-0332-46EB-A8F3-46A936E281AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74E80571-0332-46EB-A8F3-46A936E281AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74E80571-0332-46EB-A8F3-46A936E281AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74E80571-0332-46EB-A8F3-46A936E281AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

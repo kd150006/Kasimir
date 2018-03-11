@@ -37,9 +37,9 @@ namespace Kasimir.Persistence.Repositories
             return _dbContext.Stocks;
         }
 
-        public IEnumerable<Stock> GetById(int id)
+        public Stock GetById(int id)
         {
-            return _dbContext.Stocks.Where(stock => stock.Id == id);
+            return _dbContext.Stocks.Find(id);
         }
 
         public IEnumerable<Stock> GetByName(string name)
@@ -56,7 +56,7 @@ namespace Kasimir.Persistence.Repositories
         {
             var stockQuantity = _dbContext.Stocks
                 .Where(stock => stock.Status != ItemStatus.Deleted)
-                .Include(stock => stock.Stocks2Products)
+                //.Include(stock => stock.Stocks2Products)
                 .GroupBy(stock => stock.Id)
                 .Count();
             return (stockQuantity);
@@ -65,14 +65,22 @@ namespace Kasimir.Persistence.Repositories
         public int GetQuantityOfStockById(int id)
         {
             return _dbContext.Stocks
-                .Include(stock => stock.Stocks2Products)
+                //.Include(stock => stock.Stocks2Products)
                 .Where(stock => stock.Id.Equals(id))
                 .Count();
         }
 
+        public Stock GetStockByIdWithProducts(int id)
+        {
+            return _dbContext.Stocks
+                .Include(stock => stock.Products)
+                .Where(stocksWithProducts => stocksWithProducts.Id == id)
+                .SingleOrDefault();
+        }
+
         public void Update(Stock stock)
         {
-            _dbContext.Remove(stock);
+            _dbContext.Update(stock);
         }
     }
 }

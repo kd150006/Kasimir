@@ -12,9 +12,10 @@ namespace Kasimir.Core.Contracts
         void Update(Stock stock);
         void Delete(Stock stock);
         IEnumerable<Stock> GetAll();
-        IEnumerable<Stock> GetById(int id);
+        Stock GetById(int id);
         IEnumerable<Stock> GetByStatus(string status);
         IEnumerable<Stock> GetByName(string name);
+        Stock GetStockByIdWithProducts(int id);
         int GetQuantityOfAllStocks();
         int GetQuantityOfStockById(int id);
     }

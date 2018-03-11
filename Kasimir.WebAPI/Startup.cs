@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Kasimir.WebAPI
 {
@@ -28,12 +30,11 @@ namespace Kasimir.WebAPI
         {
             //AutoMapper
 
-
             services.AddCors();
             services.AddScoped<IUnitOfWork, UnitOfWork>(serviceProvider => new UnitOfWork());
             //Needs to be configured because of ef core many to many relationships handling. JSON will loop and cause connection error when not configured
             services.AddMvc()
-                    .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                    .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);            
 
         }
 
