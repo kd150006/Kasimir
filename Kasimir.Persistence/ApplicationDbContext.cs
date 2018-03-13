@@ -27,16 +27,17 @@ namespace Kasimir.Persistence
 
             var configuration = builder.Build();
 
-            string connectionString = configuration["ConnectionStrings:DefaultConnection"];
-            optionsBuilder.UseSqlServer(connectionString);
+            //string connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            //optionsBuilder.UseSqlServer(connectionString);
 
             //var log = new LoggerConfiguration()
             //    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
             //    .CreateLogger();
 
             /* MySQL */
-            //string connectionString = configuration["ConnectionStrings:MySQLConnection"];
-            //optionsBuilder.UseMySql(connectionString);
+            string connectionString = configuration["ConnectionStrings:MySQLConnection"];
+            optionsBuilder.UseMySQL(connectionString);
+                //UseMySql(connectionString);
             /* Pomelo MySql */
             //string connectionString = configuration["ConnectionStrings:PomeloMySqlConnection"];
             //optionsBuilder.UseMySql(connectionString);

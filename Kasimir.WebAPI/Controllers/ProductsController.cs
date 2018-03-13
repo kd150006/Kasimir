@@ -4,9 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using AutoMapper;
 using Kasimir.Core.Contracts;
-using Kasimir.Core.DataTransferObjects;
 using Kasimir.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +23,7 @@ namespace Kasimir.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            var products = _uow.ProductRepository.GetAll();
+            var products = _uow.ProductRepository.GetAll().OrderBy(product => product.Name);
             return (products);
         }
 

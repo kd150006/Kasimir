@@ -1,6 +1,5 @@
 ﻿using Kasimir.Core;
 using Kasimir.Core.Contracts;
-using Kasimir.Core.DataTransferObjects;
 using Kasimir.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
