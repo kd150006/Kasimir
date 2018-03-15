@@ -17,9 +17,5 @@ namespace Kasimir.Core.Entities
         [ForeignKey(nameof(BasketHeaderId))]
         public BasketHeader BasketHeader { get; set; }
 
-        public object SingleOrDefault()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

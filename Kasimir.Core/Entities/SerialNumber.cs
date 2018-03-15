@@ -17,11 +17,6 @@ namespace Kasimir.Core.Entities
         [Required]
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; }
-        [NotMapped]
-        public bool IsActive
-        {
-            get { return Status == ItemStatus.Active; }
-            set { Status = value ? ItemStatus.Active : ItemStatus.Inactive; }
-        }
+
     }
 }

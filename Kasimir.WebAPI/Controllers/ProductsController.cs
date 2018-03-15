@@ -26,6 +26,12 @@ namespace Kasimir.WebAPI.Controllers
             var products = _uow.ProductRepository.GetAll().OrderBy(product => product.Name);
             return (products);
         }
+        [HttpGet("stock/{id}")]
+        public IEnumerable<Product> GetAllByStockId(int id)
+        {
+            var products = _uow.ProductRepository.GetAllByStockId(id);
+            return products;
+        }
 
         // GET products/id/7
         [HttpGet("id/{id}")]
@@ -41,12 +47,19 @@ namespace Kasimir.WebAPI.Controllers
             var products = _uow.ProductRepository.GetByName(name);
             return (products);
         }
-        // GET products/number/nok TO-DO
-        [HttpGet("number/{number})")]
+        
+        [HttpGet("number/{number}")]
         public IEnumerable<Product> GetByNumber(string number)
         {
             var products = _uow.ProductRepository.GetByNumber(number);
             return (products);
+        }
+        // GET total quantiy of all products on a given stock
+        [HttpGet("qty/{id}")]
+        public int GetTotalQtyInStock(int id)
+        {
+            var totalQty = _uow.ProductRepository.GetTotalStockQty(id);
+            return (totalQty);
         }
 
         // POST products
@@ -54,7 +67,7 @@ namespace Kasimir.WebAPI.Controllers
         public void Post([FromBody]Product product)
         {
             _uow.ProductRepository.Add(product);
-            _uow.Save();
+            _uow.Save();            
         }
 
         // PUT products/7

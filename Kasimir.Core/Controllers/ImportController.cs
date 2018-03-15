@@ -31,7 +31,8 @@ namespace Kasimir.Core
                     Number = line[0],
                     Name = line[1],
                     Barcode = line[5],
-                    Stock = stocks.Where(stock => stock.Name.Equals(line[7])).SingleOrDefault(),                    
+                    Stock = stocks.Where(stock => stock.Name.Equals(line[7])).SingleOrDefault(),
+                    //Quantity = Convert.ToInt32(line[8]),
                     Status = "A"
                 })
                 .ToList();

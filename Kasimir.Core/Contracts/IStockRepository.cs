@@ -14,8 +14,7 @@ namespace Kasimir.Core.Contracts
         IEnumerable<Stock> GetAll();
         Stock GetById(int id);
         IEnumerable<Stock> GetByStatus(string status);
-        IEnumerable<Stock> GetByName(string name);
-        Stock GetStockByIdWithProducts(int id);
+        IEnumerable<Stock> GetByName(string name);        
         int GetQuantityOfAllStocks();
         int GetQuantityOfStockById(int id);
     }

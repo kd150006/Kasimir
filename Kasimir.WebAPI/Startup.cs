@@ -32,9 +32,10 @@ namespace Kasimir.WebAPI
 
             services.AddCors();
             services.AddScoped<IUnitOfWork, UnitOfWork>(serviceProvider => new UnitOfWork());
+
             //Needs to be configured because of ef core many to many relationships handling. JSON will loop and cause connection error when not configured
             services.AddMvc()
-                    .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);            
+                    .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);                
 
         }
 
@@ -49,7 +50,7 @@ namespace Kasimir.WebAPI
                 builder.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod());
-            app.UseMvc();
+            app.UseMvc();            
         }
     }
 }

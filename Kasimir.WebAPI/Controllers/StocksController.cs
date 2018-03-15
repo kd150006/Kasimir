@@ -31,7 +31,7 @@ namespace Kasimir.WebAPI.Controllers
         public Stock Get(int id)
         {
             //var stock = _uow.StockRepository.GetById(id).SingleOrDefault();
-            var stock = _uow.StockRepository.GetStockByIdWithProducts(id);
+            var stock = _uow.StockRepository.GetById(id);
             return (stock);
         }
 

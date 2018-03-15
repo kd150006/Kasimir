@@ -17,7 +17,6 @@ namespace Kasimir.Persistence
         public DbSet<CashDrawer> CashDrawers { get; set; }
         public DbSet<MeansOfPayment> MeansOfPayments { get; set; }        
         public DbSet<User> Users { get; set; }        
-        public DbSet<SerialNumber> SerialNumbers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,21 +25,12 @@ namespace Kasimir.Persistence
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             var configuration = builder.Build();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(connectionString);
 
-            //string connectionString = configuration["ConnectionStrings:DefaultConnection"];
-            //optionsBuilder.UseSqlServer(connectionString);
-
-            //var log = new LoggerConfiguration()
-            //    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-            //    .CreateLogger();
-
-            /* MySQL */
-            string connectionString = configuration["ConnectionStrings:MySQLConnection"];
-            optionsBuilder.UseMySQL(connectionString);
-                //UseMySql(connectionString);
-            /* Pomelo MySql */
-            //string connectionString = configuration["ConnectionStrings:PomeloMySqlConnection"];
-            //optionsBuilder.UseMySql(connectionString);
+            var log = new LoggerConfiguration()
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
         }
     }
 }

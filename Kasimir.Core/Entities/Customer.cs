@@ -20,11 +20,6 @@ namespace Kasimir.Core.Entities
         public string Number { get; set; }        
         public int? TelephoneNumber { get; set; }
         public string EmailAddress { get; set; }
-        [NotMapped]
-        public bool IsActive
-        {
-            get { return Status == ItemStatus.Active; }
-            set { Status = value ? ItemStatus.Active : ItemStatus.Inactive; }
-        }
+
     }
 }

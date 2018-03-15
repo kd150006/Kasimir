@@ -17,14 +17,6 @@ namespace Kasimir.Persistence.Tests
             ApplicationDbContext dbContext = new ApplicationDbContext();
             dbContext.Database.EnsureDeleted();
             dbContext.Database.Migrate();
-            dbContext.Database.EnsureCreated();
-
-            //using (UnitOfWork uow = new UnitOfWork())
-            //{
-            //    var products = ImportController.ReadProductsFromCsv().ToList();
-            //    uow.ProductRepository.AddRange(products);
-            //    uow.Save();
-            //}
         }
 
         [TestMethod]

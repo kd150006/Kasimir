@@ -20,16 +20,10 @@ namespace Kasimir.Core.Entities
         public int? StockId { get; set; }
         [ForeignKey(nameof(StockId))]
         public Stock Stock { get; set; }
-        public ICollection<SerialNumber> SerialNumbers { get; set; }
-        [NotMapped]
-        public bool IsActive
-        {
-            get { return Status == ItemStatus.Active; }
-            set { Status = value ? ItemStatus.Active : ItemStatus.Inactive; }
-        }
+        public int? Quantity { get; set; }        
+
         public Product()
-        {            
-            SerialNumbers = new List<SerialNumber>();
+        {                        
         }
     }
 }

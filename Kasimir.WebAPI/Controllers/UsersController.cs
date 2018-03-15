@@ -22,12 +22,12 @@ namespace Kasimir.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            var usersOverview = _uow.UserRepository.GetAll();
+            var usersOverview = _uow.UserRepository.GetAll().OrderBy(user => user.LastName);
             return (usersOverview);
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public User Get(int id)
         {
             var user = _uow.UserRepository.GetById(id);
@@ -45,9 +45,8 @@ namespace Kasimir.WebAPI.Controllers
         // PUT: api/Users/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]User user)
-        {
-            var userToUpdate = _uow.UserRepository.GetById(id);
-            _uow.UserRepository.Update(userToUpdate);
+        {            
+            _uow.UserRepository.Update(user);
             _uow.Save();
         }
         

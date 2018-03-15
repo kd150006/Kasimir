@@ -70,14 +70,6 @@ namespace Kasimir.Persistence.Repositories
                 .Count();
         }
 
-        public Stock GetStockByIdWithProducts(int id)
-        {
-            return _dbContext.Stocks
-                .Include(stock => stock.Products)
-                .Where(stocksWithProducts => stocksWithProducts.Id == id)
-                .SingleOrDefault();
-        }
-
         public void Update(Stock stock)
         {
             _dbContext.Update(stock);
