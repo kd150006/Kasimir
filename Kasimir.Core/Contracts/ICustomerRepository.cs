@@ -12,7 +12,7 @@ namespace Kasimir.Core.Contracts
         void Update(Customer customer);
         void Delete(Customer customer);
         IEnumerable<Customer> GetAll();
-        IEnumerable<Customer> GetById(int id);
+        Customer GetById(int id);
         IEnumerable<Customer> GetNyNumber(string number);
         IEnumerable<Customer> GetByStatus(string status);
         IEnumerable<Customer> GetByFullname(string firstname, string lastname);

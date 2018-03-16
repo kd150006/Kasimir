@@ -27,10 +27,10 @@ namespace Kasimir.WebAPI.Controllers
         }
 
         // GET: api/Customers/5
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public Customer Get(int id)
         {
-            var customer = _uow.CustomerRepository.GetById(id).SingleOrDefault();
+            var customer = _uow.CustomerRepository.GetById(id);
             return (customer);
         }
         
@@ -45,9 +45,8 @@ namespace Kasimir.WebAPI.Controllers
         // PUT: api/Customers/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Customer customer)
-        {
-            var customerToUpdate = _uow.CustomerRepository.GetById(id).SingleOrDefault();
-            _uow.CustomerRepository.Update(customerToUpdate);
+        {            
+            _uow.CustomerRepository.Update(customer);
             _uow.Save();
         }
         
@@ -55,7 +54,7 @@ namespace Kasimir.WebAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var customer = _uow.CustomerRepository.GetById(id).SingleOrDefault();
+            var customer = _uow.CustomerRepository.GetById(id);
             _uow.CustomerRepository.Delete(customer);
             _uow.Save();
         }

@@ -18,7 +18,7 @@ namespace Kasimir.Core.Entities
         public string LastName { get; set; }
         [Required, MaxLength(255)]
         public string Number { get; set; }        
-        public int? TelephoneNumber { get; set; }
+        public string TelephoneNumber { get; set; }
         public string EmailAddress { get; set; }
 
     }

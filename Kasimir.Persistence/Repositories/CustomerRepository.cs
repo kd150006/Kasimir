@@ -34,7 +34,7 @@ namespace Kasimir.Persistence.Repositories
 
         public IEnumerable<Customer> GetAll()
         {
-            return _dbContext.Customers;
+            return _dbContext.Customers.Where(customer => customer.Status != "D");
         }
 
         public IEnumerable<Customer> GetByFullname(string firstname, string lastname)
@@ -42,9 +42,9 @@ namespace Kasimir.Persistence.Repositories
             return _dbContext.Customers.Where(customer => customer.FirstName + customer.LastName == firstname + lastname);
         }
 
-        public IEnumerable<Customer> GetById(int id)
+        public Customer GetById(int id)
         {
-            return _dbContext.Customers.Where(customer => customer.Id == id);
+            return _dbContext.Customers.Where(customer => customer.Status != "D").Where(customer => customer.Id == id).SingleOrDefault();
         }
 
         public IEnumerable<Customer> GetByStatus(string status)
