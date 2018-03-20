@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Core.Contracts
 {
     public interface ICashDrawerRepository
     {
-        IEnumerable<CashDrawer> GetAll();
-        CashDrawer GetById(int id);
+        Task<IEnumerable<CashDrawer>> GetAll();
+        Task<CashDrawer> GetById(int id);
         void Update(CashDrawer cashDrawer);
     }
 }

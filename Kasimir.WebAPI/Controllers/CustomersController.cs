@@ -20,43 +20,46 @@ namespace Kasimir.WebAPI.Controllers
         }
         // GET: api/Customers
         [HttpGet]
-        public IEnumerable<Customer> Get()
+        public async Task<IActionResult> Get()
         {
-            var customerOverview = _uow.CustomerRepository.GetAll();
-            return (customerOverview);
+            var customerOverview = await _uow.CustomerRepository.GetAll();
+            return Ok(customerOverview);
         }
 
         // GET: api/Customers/5
         [HttpGet("id/{id}")]
-        public Customer Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var customer = _uow.CustomerRepository.GetById(id);
-            return (customer);
+            var customer = await _uow.CustomerRepository.GetById(id);
+            return Ok(customer);
         }
         
         // POST: api/Customers
         [HttpPost]
-        public void Post([FromBody]Customer customer)
+        public async Task<IActionResult> Post([FromBody]Customer customer)
         {
-            _uow.CustomerRepository.Add(customer);
-            _uow.Save();
+            await _uow.CustomerRepository.Add(customer);
+            await _uow.Save();
+            return Ok(customer);
         }
         
         // PUT: api/Customers/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Customer customer)
+        public async Task<IActionResult> Put(int id, [FromBody]Customer customer)
         {            
             _uow.CustomerRepository.Update(customer);
-            _uow.Save();
+            await _uow.Save();
+            return Ok(customer);
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var customer = _uow.CustomerRepository.GetById(id);
+            var customer = await _uow.CustomerRepository.GetById(id);
             _uow.CustomerRepository.Delete(customer);
-            _uow.Save();
+            await _uow.Save();
+            return Ok(customer);
         }
     }
 }

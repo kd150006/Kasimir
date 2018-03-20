@@ -2,20 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Core.Contracts
 {
     public interface IStockRepository
     {
-        void Add(Stock stock);
-        void AddRange(IEnumerable<Stock> stock);
+        Task Add(Stock stock);
+        Task AddRange(IEnumerable<Stock> stock);
         void Update(Stock stock);
         void Delete(Stock stock);
-        IEnumerable<Stock> GetAll();
-        Stock GetById(int id);
-        IEnumerable<Stock> GetByStatus(string status);
-        IEnumerable<Stock> GetByName(string name);        
-        int GetQuantityOfAllStocks();
-        int GetQuantityOfStockById(int id);
+        Task<IEnumerable<Stock>> GetAll();
+        Task<Stock> GetById(int id);
+        Task<IEnumerable<Stock>> GetByStatus(string status);
+        Task<IEnumerable<Stock>> GetByName(string name);        
+       Task<int> GetQuantityOfAllStocks();
+        Task<int> GetQuantityOfStockById(int id);
     }
 }

@@ -2,22 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Core.Contracts
 {
    public interface IBasketHeaderRepository
     {
-        IEnumerable<BasketHeader> GetAll();
-        IEnumerable<BasketHeader> GetAllWithDetailsAndProducts();
-        BasketHeader GetById(int id);
-        BasketHeader GetByIdWithDetails(int id);
-        int GetLastInsertedBasketHeaderId();
-        int GetMaxBasketNumber();
-        void Add(BasketHeader basketHeader);
-        void AddRange(IEnumerable<BasketHeader> basketHeaders);
+        Task<IEnumerable<BasketHeader>> GetAll();
+        Task<IEnumerable<BasketHeader>> GetAllWithDetailsAndProducts();
+        Task<BasketHeader> GetById(int id);
+        Task<BasketHeader> GetByIdWithDetails(int id);
+        Task<BasketHeader> GetLatestBasketHeader();        
+        Task Add(BasketHeader basketHeader);
+        Task AddRange(IEnumerable<BasketHeader> basketHeaders);
         void Update(BasketHeader basketHeader);
         void UpdateRange(BasketHeader basketHeaders);
         void Delete(BasketHeader basketHeader);
-        IEnumerable<BasketHeader> GetBySearchTerm(string term);
+        Task<IEnumerable<BasketHeader>> GetBySearchTerm(string term);
     }
 }

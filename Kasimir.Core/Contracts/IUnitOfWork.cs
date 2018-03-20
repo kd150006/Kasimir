@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Core.Contracts
 {
@@ -14,7 +15,7 @@ namespace Kasimir.Core.Contracts
         IStockRepository StockRepository { get; }
         IUserRepository UserRepository { get; }
 
-        void Save();
+        Task Save();
         void InitializeDatabase();
     }
 }

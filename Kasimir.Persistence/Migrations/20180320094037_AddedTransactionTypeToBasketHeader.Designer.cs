@@ -11,9 +11,10 @@ using System;
 namespace Kasimir.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180320094037_AddedTransactionTypeToBasketHeader")]
+    partial class AddedTransactionTypeToBasketHeader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,16 +54,13 @@ namespace Kasimir.Persistence.Migrations
 
                     b.Property<DateTime>("BasketDate");
 
-                    b.Property<int>("ReferenceBasketHeaderId");
-
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<double>("SumTotal");
 
-                    b.Property<string>("TransactionType")
-                        .IsRequired();
+                    b.Property<string>("TransactionType");
 
                     b.HasKey("Id");
 

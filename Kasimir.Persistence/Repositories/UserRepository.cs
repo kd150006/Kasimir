@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Repositories
 {
@@ -15,14 +16,14 @@ namespace Kasimir.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
-        public void Add(User user)
+        public async Task Add(User user)
         {
-            _dbContext.Add(user);
+            await _dbContext.AddAsync(user);
         }
 
-        public void AddRange(IEnumerable<User> users)
+        public async Task AddRange(IEnumerable<User> users)
         {
-            _dbContext.AddRange(users);
+            await _dbContext.AddRangeAsync(users);
         }
 
         public void Delete(User user)
@@ -31,46 +32,46 @@ namespace Kasimir.Persistence.Repositories
             Update(user);
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            return _dbContext.Users
+            return await _dbContext.Users
                 .Where(user => user.Status != ItemStatus.Deleted)
-                .ToList();
+                .ToListAsync();
         }
 
-        public IEnumerable<User> GetByFirstName(string firstName)
+        public async Task<IEnumerable<User>> GetByFirstName(string firstName)
         {
-            return _dbContext.Users
+            return await _dbContext.Users
                 .Where(user => user.FirstName.Contains(firstName))
-                .ToList();
+                .ToListAsync();
         }
 
-        public IEnumerable<User> GetByFullName(string firstName, string lastName)
+        public async Task<IEnumerable<User>> GetByFullName(string firstName, string lastName)
         {
-            return _dbContext.Users
+            return await _dbContext.Users
                 .Where(user => user.FirstName.Contains(firstName) && user.LastName.Contains(lastName))
-                .ToList();
+                .ToListAsync();
         }
 
-        public User GetById(int id)
+        public async Task<User> GetById(int id)
         {
-            return _dbContext.Users
+            return await _dbContext.Users
                 .Where(user => user.Id == id)
-                .SingleOrDefault();
+                .SingleOrDefaultAsync();
         }
 
-        public IEnumerable<User> GetByLastName(string lastName)
+        public async Task<IEnumerable<User>> GetByLastName(string lastName)
         {
-            return _dbContext.Users
+            return await _dbContext.Users
                 .Where(user => user.LastName.Contains(lastName))
-                .ToList();
+                .ToListAsync(); ;
         }
 
-        public User GetByLogin(string login)
+        public async Task<User> GetByLogin(string login)
         {
-            return _dbContext.Users
+            return await _dbContext.Users
                 .Where(user => user.Login == login)
-                .SingleOrDefault();
+                .SingleOrDefaultAsync();
         }
 
         public void Update(User user)

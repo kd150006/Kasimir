@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence
 {
@@ -31,9 +32,9 @@ namespace Kasimir.Persistence
         public IStockRepository StockRepository { get; }
         public IUserRepository UserRepository { get; }
 
-        public void Save()
+        public async Task Save()
         {
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
         public void CreateDatabase()
         {

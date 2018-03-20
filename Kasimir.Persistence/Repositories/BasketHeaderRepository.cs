@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Repositories
 {
@@ -14,18 +15,17 @@ namespace Kasimir.Persistence.Repositories
         private readonly ApplicationDbContext _dbContext;        
         public BasketHeaderRepository(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext;
-            
+            _dbContext = dbContext;            
         }
 
-        public void Add(BasketHeader basketHeader)
+        public async Task Add(BasketHeader basketHeader)
         {
-            _dbContext.Add(basketHeader);
+            await _dbContext.AddAsync(basketHeader);
         }
 
-        public void AddRange(IEnumerable<BasketHeader> basketHeaders)
+        public async Task AddRange(IEnumerable<BasketHeader> basketHeaders)
         {
-            _dbContext.AddRange(basketHeaders);
+            await _dbContext.AddRangeAsync(basketHeaders);
         }
 
         public void Delete(BasketHeader basketHeader)
@@ -33,54 +33,49 @@ namespace Kasimir.Persistence.Repositories
             _dbContext.Remove(basketHeader);
         }
 
-        public IEnumerable<BasketHeader> GetAll()
+        public async Task<IEnumerable<BasketHeader>> GetAll()
         {
-            return _dbContext.BasketHeaders;
+            return await _dbContext.BasketHeaders.ToListAsync();
         }
 
-        public IEnumerable<BasketHeader> GetAllWithDetailsAndProducts()
+        public async Task<IEnumerable<BasketHeader>> GetAllWithDetailsAndProducts()
         {
-            return _dbContext.BasketHeaders
+            return await _dbContext.BasketHeaders
                 .Include(basketHeader => basketHeader.BasketDetails)
-                    .ThenInclude(basketDetails => basketDetails.Product);
+                    .ThenInclude(basketDetails => basketDetails.Product).ToListAsync();
         }
 
-        public BasketHeader GetById(int id)
+        public async Task<BasketHeader> GetById(int id)
         {
-            return _dbContext.BasketHeaders.Find(id);
+            return await _dbContext.BasketHeaders.FindAsync(id);
         }
 
-        public BasketHeader GetByIdWithDetails(int id)
+        public async Task<BasketHeader> GetByIdWithDetails(int id)
         {
-            return _dbContext.BasketHeaders
+            return await _dbContext.BasketHeaders
                 .Include(basketHeader => basketHeader.BasketDetails)
                 .Where(basketHeader => basketHeader.Id == id)
-                .SingleOrDefault();
+                .SingleOrDefaultAsync();
         }
 
-        public IEnumerable<BasketHeader> GetBySearchTerm(string term)
+        public async Task<IEnumerable<BasketHeader>> GetBySearchTerm(string term)
         {
-            var results = _dbContext.BasketHeaders
-                .Include(basketHdr => basketHdr.BasketDetails)                    
-                .Where(basketHdrWithDtlsAndProducts => 
+            var results = await _dbContext.BasketHeaders
+                .Include(basketHdr => basketHdr.BasketDetails)
+                .Where(basketHdrWithDtlsAndProducts =>
                     basketHdrWithDtlsAndProducts.BasketDate.ToString().Contains(term) ||
-                    basketHdrWithDtlsAndProducts.Id.ToString().Contains(term));
+                    basketHdrWithDtlsAndProducts.Id.ToString().Contains(term)
+                )
+                .ToListAsync();
                                             
             return (results);
         }
 
-        public int GetLastInsertedBasketHeaderId()
+        public async Task<BasketHeader> GetLatestBasketHeader()
         {
-            return _dbContext.BasketHeaders
-                .OrderByDescending(basketHeader => basketHeader.Id)
-                .Select(basketHeader => basketHeader.Id)
-                .FirstOrDefault();
-        }
-
-        public int GetMaxBasketNumber()
-        {
-            throw new NotImplementedException();
-            //return _dbContext.BasketHeaders.Select(basketHeader => basketHeader.BasketNumber).Max();
+            return await _dbContext.BasketHeaders
+                    .OrderByDescending(basketHeader => basketHeader.Id)
+                    .FirstOrDefaultAsync();
         }
 
         public void Update(BasketHeader basketHeader)

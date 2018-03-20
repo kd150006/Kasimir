@@ -20,34 +20,36 @@ namespace Kasimir.WebAPI.Controllers
         }
         // GET: api/BasketDetails
         [HttpGet]
-        public IEnumerable<BasketDetail> Get()
+        public async Task<IActionResult> Get()
         {
-            return _uow.BasketDetailRepository.GetAllWithProducts();
+            var basketDetails = await _uow.BasketDetailRepository.GetAllWithProducts();
+            return Ok(basketDetails);
         }
 
         // GET: api/BasketDetails/5
         [HttpGet("id/{id}")]
-        public IEnumerable<BasketDetail> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var basketDtls = _uow.BasketDetailRepository.GetByHeaderIdWithProducts(id);
-            return (basketDtls);
+            var basketDtls = await _uow.BasketDetailRepository.GetByHeaderIdWithProducts(id);
+            return Ok(basketDtls);
         }
 
         // GET: apit/baskets/search/
         [HttpGet("search/{term}")]
-        public IEnumerable<Product> GetBySearchTerm(string term)
+        public async Task<IActionResult> GetBySearchTerm(string term)
         {
-            var products = _uow.ProductRepository.GetBySearchTerm(term);
-            return (products);
+            var products = await _uow.ProductRepository.GetBySearchTerm(term);
+            return Ok(products);
         }
 
 
         // POST: api/BasketDetails
         [HttpPost]
-        public void Post([FromBody]BasketDetail basketDetail)
+        public async Task<IActionResult> Post([FromBody]BasketDetail basketDetail)
         {
-            _uow.BasketDetailRepository.Add(basketDetail);
-            _uow.Save();
+            await _uow.BasketDetailRepository.Add(basketDetail);
+            await _uow.Save();
+            return Ok(basketDetail);
         }
         
         // PUT: api/BasketDetails/5
@@ -55,15 +57,8 @@ namespace Kasimir.WebAPI.Controllers
         public void Put(int id, [FromBody]BasketDetail basketDetail)
         {
             _uow.BasketDetailRepository.Update(basketDetail);
-            _uow.Save();
+            _uow.Save();            
         }
-        
-        // DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //    var basketToDelete = _uow.BasketDetailRepository.GetById(id);
-        //    _uow.BasketDetailRepository.Delete(basketToDelete);
-        //}
+
     }
 }

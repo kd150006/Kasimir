@@ -20,51 +20,54 @@ namespace Kasimir.WebAPI.Controllers
         }
         // GET: api/Stocks
         [HttpGet]
-        public IEnumerable<Stock> Get()
+        public async Task<IActionResult> Get()
         {
-            var stocksOverview = _uow.StockRepository.GetAll();
-            return (stocksOverview);
+            var stocksOverview = await _uow.StockRepository.GetAll();
+            return Ok(stocksOverview);
         }
 
         // GET: api/Stocks/5
         [HttpGet("{id}")]
-        public Stock Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             //var stock = _uow.StockRepository.GetById(id).SingleOrDefault();
-            var stock = _uow.StockRepository.GetById(id);
-            return (stock);
+            var stock = await _uow.StockRepository.GetById(id);
+            return Ok(stock);
         }
 
         //GET: api/Stocks/5
         [HttpGet, Route("GetQuantity")]
-        public int GetQuantity()
+        public async Task<IActionResult> GetQuantity()
         {
-            var quantity = _uow.StockRepository.GetQuantityOfAllStocks();
-            return (quantity);
+            var quantity = await _uow.StockRepository.GetQuantityOfAllStocks();
+            return Ok(quantity);
         }
         // POST: api/Stocks
         [HttpPost]
-        public void Post([FromBody]Stock stock)
+        public async Task<IActionResult> Post([FromBody]Stock stock)
         {
-            _uow.StockRepository.Add(stock);
-            _uow.Save();
+            await _uow.StockRepository.Add(stock);
+            await _uow.Save();
+            return Ok(stock);
         }
         
         // PUT: api/Stocks/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Stock stock)
+        public async Task<IActionResult> Put(int id, [FromBody]Stock stock)
         {            
             _uow.StockRepository.Update(stock);
-            _uow.Save();
+            await _uow.Save();
+            return Ok();
         }
         
         // DELETE: api/Stocks/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var stock = _uow.StockRepository.GetById(id);
+            var stock = await _uow.StockRepository.GetById(id);
             _uow.StockRepository.Delete(stock);
-            _uow.Save();
+            await _uow.Save();
+            return Ok();
         }
     }
 }

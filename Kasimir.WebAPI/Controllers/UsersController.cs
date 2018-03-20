@@ -20,43 +20,46 @@ namespace Kasimir.WebAPI.Controllers
         }
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<User> Get()
+        public async Task<IActionResult> Get()
         {
-            var usersOverview = _uow.UserRepository.GetAll().OrderBy(user => user.LastName);
-            return (usersOverview);
+            var usersOverview = await _uow.UserRepository.GetAll();
+            return Ok(usersOverview);
         }
 
         // GET: api/Users/5
         [HttpGet("id/{id}")]
-        public User Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var user = _uow.UserRepository.GetById(id);
-            return (user);
+            var user = await _uow.UserRepository.GetById(id);
+            return Ok(user);
         }
         
         // POST: api/Users
         [HttpPost]
-        public void Post([FromBody]User user)
+        public async Task<IActionResult> Post([FromBody]User user)
         {
             _uow.UserRepository.Add(user);
-            _uow.Save();
+            await _uow.Save();
+            return Ok(user);
         }
         
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]User user)
+        public async Task<IActionResult> Put(int id, [FromBody]User user)
         {            
             _uow.UserRepository.Update(user);
-            _uow.Save();
+            await _uow.Save();
+            return Ok(user);
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var user = _uow.UserRepository.GetById(id);
+            var user = await _uow.UserRepository.GetById(id);
             _uow.UserRepository.Delete(user);
-            _uow.Save();
+            await _uow.Save();
+            return Ok(user);
         }
     }
 }

@@ -12,6 +12,9 @@ namespace Kasimir.Core.Entities
         [Required]
         public DateTime BasketDate { get; set; }
         public double SumTotal { get; set; }
+        public int ReferenceBasketHeaderId { get; set; }
+        [Required]
+        public string TransactionType { get; set; }
         [Required]
         public ICollection<BasketDetail> BasketDetails { get; set; }
         public BasketHeader()

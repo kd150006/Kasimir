@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Repositories
 {
@@ -16,14 +17,14 @@ namespace Kasimir.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public void Add(Customer customer)
+        public async Task Add(Customer customer)
         {
-            _dbContext.Customers.Add(customer);
+            await _dbContext.Customers.AddAsync(customer);
         }
 
-        public void AddRange(IEnumerable<Customer> customers)
+        public async Task AddRange(IEnumerable<Customer> customers)
         {
-            _dbContext.Customers.AddRange(customers);
+            await _dbContext.Customers.AddRangeAsync(customers);
         }
 
         public void Delete(Customer customer)
@@ -32,29 +33,30 @@ namespace Kasimir.Persistence.Repositories
             Update(customer);
         }
 
-        public IEnumerable<Customer> GetAll()
+        public async Task<IEnumerable<Customer>> GetAll()
         {
-            return _dbContext.Customers.Where(customer => customer.Status != "D");
+            return await _dbContext.Customers
+                .Where(customer => customer.Status != "D").ToListAsync();
         }
 
-        public IEnumerable<Customer> GetByFullname(string firstname, string lastname)
+        public async Task<IEnumerable<Customer>> GetByFullname(string firstname, string lastname)
         {
-            return _dbContext.Customers.Where(customer => customer.FirstName + customer.LastName == firstname + lastname);
+            return await _dbContext.Customers.Where(customer => customer.FirstName + customer.LastName == firstname + lastname).ToListAsync();
         }
 
-        public Customer GetById(int id)
+        public async Task<Customer> GetById(int id)
         {
-            return _dbContext.Customers.Where(customer => customer.Status != "D").Where(customer => customer.Id == id).SingleOrDefault();
+            return await _dbContext.Customers.Where(customer => customer.Status != "D").Where(customer => customer.Id == id).SingleOrDefaultAsync();
         }
 
-        public IEnumerable<Customer> GetByStatus(string status)
+        public async Task<IEnumerable<Customer>> GetByStatus(string status)
         {
-            return _dbContext.Customers.Where(customer => customer.Status == status);
+            return await _dbContext.Customers.Where(customer => customer.Status == status).ToListAsync();
         }
 
-        public IEnumerable<Customer> GetNyNumber(string number)
+        public Task<IEnumerable<Customer>> GetNyNumber(string number)
         {
-            return _dbContext.Customers.Where(customer => customer.Number == number);
+            return await _dbContext.Customers.Where(customer => customer.Number == number).ToListAsync();
         }
 
         public void Update(Customer customer)

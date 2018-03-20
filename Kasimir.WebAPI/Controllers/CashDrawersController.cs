@@ -20,36 +20,27 @@ namespace Kasimir.WebAPI.Controllers
         }
         // GET: api/CashDrawers
         [HttpGet]
-        public IEnumerable<CashDrawer> Get()
+        public async Task<IActionResult> Get()
         {
-            return _uow.CashDrawerRepository.GetAll();
+            var result = await _uow.CashDrawerRepository.GetAll();
+            return Ok(result);
         }
 
         // GET: api/CashDrawers/5
         [HttpGet("id/{id}")]
-        public CashDrawer Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return _uow.CashDrawerRepository.GetById(id);
+            var result = await _uow.CashDrawerRepository.GetById(id);
+            return Ok(result);
         }
-
-        //// POST: api/CashDrawers
-        //[HttpPost]
-        //public void Post([FromBody]string value)
-        //{
-        //}
 
         // PUT: api/CashDrawers/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]CashDrawer cashDrawer)
+        public async Task<IActionResult> Put(int id, [FromBody]CashDrawer cashDrawer)
         {
             _uow.CashDrawerRepository.Update(cashDrawer);
-            _uow.Save();
-        }
-        
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+            await _uow.Save();
+            return Ok(cashDrawer);
+        }        
     }
 }

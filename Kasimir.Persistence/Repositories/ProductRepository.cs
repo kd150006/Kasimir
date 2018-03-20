@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Repositories
 {
@@ -17,14 +18,14 @@ namespace Kasimir.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public void Add(Product product)
+        public async Task Add(Product product)
         {
-            _dbContext.Add(product);
+            await _dbContext.AddAsync(product);            
         }
 
-        public void AddRange(List<Product> products)
+        public async Task AddRange(List<Product> products)
         {
-            _dbContext.AddRange(products);
+            await _dbContext.AddRangeAsync(products);
         }
 
         public void Delete(Product product)
@@ -32,44 +33,45 @@ namespace Kasimir.Persistence.Repositories
             _dbContext.Remove(product);
         }
 
-        public IEnumerable<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            return _dbContext.Products
+            return await _dbContext.Products
                 .Include(product => product.Stock)
                 .Where(product => product.Status != ItemStatus.Deleted)
-                .ToList();
+                .OrderBy(product => product.Name)
+                .ToListAsync();
         }
 
-        public IEnumerable<Product> GetAllByStockId(int id)
+        public async Task<IEnumerable<Product>> GetAllByStockId(int id)
         {
-            return _dbContext.Products
+            return await _dbContext.Products
                 .Where(product => product.StockId == id)
-                .ToList();
+                .ToListAsync();
         }
 
-        public Product GetById(int id)
+        public async Task<Product> GetById(int id)
         {
-            return _dbContext.Products
+            return await _dbContext.Products
                 .Include(product => product.Stock)
                 .Where(product => product.Status != ItemStatus.Deleted && product.Id == id)
-                .SingleOrDefault();
+                .SingleOrDefaultAsync();
 
         }
 
-        public IEnumerable<Product> GetBySearchTerm(string searchTerm)
+        public async Task<IEnumerable<Product>> GetBySearchTerm(string searchTerm)
         {
-            return _dbContext.Products
+            return await _dbContext.Products
                 .Where(product => product.Status != ItemStatus.Deleted &&
                     (product.Name.Contains(searchTerm) || product.Number.Contains(searchTerm) || product.Barcode.Contains(searchTerm)))
-                    .ToList();
+                    .ToListAsync();
         }
 
-        public int GetTotalStockQty(int id)
+        public async Task<int> GetTotalStockQty(int id)
         {
-            return _dbContext.Products
+            return await _dbContext.Products
                 .Include(product => product.Stock)
                 .Where(productStock => productStock.Stock.Id == id)
-                .Sum(product => product.Quantity ?? 0);
+                .SumAsync(product => product.Quantity ?? 0);
         }
 
         public void Update(Product product)

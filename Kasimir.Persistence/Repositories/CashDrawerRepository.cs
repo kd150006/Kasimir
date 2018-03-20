@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Repositories
 {
@@ -16,14 +17,14 @@ namespace Kasimir.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<CashDrawer> GetAll()
+        public async Task<IEnumerable<CashDrawer>> GetAll()
         {
-            return _dbContext.CashDrawers.ToList();
+            return await _dbContext.CashDrawers.ToListAsync();
         }
 
-        public CashDrawer GetById(int id)
+        public async Task<CashDrawer> GetById(int id)
         {
-            return _dbContext.CashDrawers.Find(id);
+            return await _dbContext.CashDrawers.FindAsync(id);
         }
 
         public void Update(CashDrawer cashDrawer)

@@ -21,64 +21,67 @@ namespace Kasimir.WebAPI.Controllers
         }
         // GET products/
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public async Task<IActionResult> Get()
         {
-            var products = _uow.ProductRepository.GetAll().OrderBy(product => product.Name);
-            return (products);
+            var products = await _uow.ProductRepository.GetAll();                
+            return Ok(products);
         }
         [HttpGet("stock/{id}")]
-        public IEnumerable<Product> GetAllByStockId(int id)
+        public async Task<IActionResult> GetAllByStockId(int id)
         {
-            var products = _uow.ProductRepository.GetAllByStockId(id);
-            return products;
+            var products = await _uow.ProductRepository.GetAllByStockId(id);
+            return Ok(products);
         }
 
         // GET products/id/7
         [HttpGet("id/{id}")]
-        public Product GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var product = _uow.ProductRepository.GetById(id);
-            return (product);
+            var product = await _uow.ProductRepository.GetById(id);
+            return Ok(product);
         }
         // GET products/name/Goo
         [HttpGet("search/{term}")]
-        public IEnumerable<Product> GetBySearchTerm(string term)
+        public async Task<IActionResult> GetBySearchTerm(string term)
         {
-            var products = _uow.ProductRepository.GetBySearchTerm(term);
-            return (products);
+            var products = await _uow.ProductRepository.GetBySearchTerm(term);
+            return Ok(products);
         }
 
         // GET total quantiy of all products on a given stock
         [HttpGet("qty/{id}")]
-        public int GetTotalQtyInStock(int id)
+        public async Task<IActionResult> GetTotalQtyInStock(int id)
         {
-            var totalQty = _uow.ProductRepository.GetTotalStockQty(id);
-            return (totalQty);
+            var totalQty = await _uow.ProductRepository.GetTotalStockQty(id);
+            return Ok(totalQty);
         }
 
         // POST products
         [HttpPost]
-        public void Post([FromBody]Product product)
+        public async Task<IActionResult> Post([FromBody]Product product)
         {
-            _uow.ProductRepository.Add(product);
-            _uow.Save();            
+            await _uow.ProductRepository.Add(product);
+            await _uow.Save();
+            return Ok(product);
         }
 
         // PUT products/7
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Product product)
+        public async Task<IActionResult> Put (int id, [FromBody]Product product)
         {            
             _uow.ProductRepository.Update(product);
-            _uow.Save();
+            await _uow.Save();
+            return Ok(product);
         }
 
         // DELETE products/7
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var productToDelete = _uow.ProductRepository.GetById(id);
+            var productToDelete = await _uow.ProductRepository.GetById(id);
             _uow.ProductRepository.Delete(productToDelete);
-            _uow.Save();
+            await _uow.Save();
+            return Ok();
         }
 
     }

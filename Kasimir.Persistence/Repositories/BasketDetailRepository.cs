@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Repositories
 {
@@ -15,40 +16,41 @@ namespace Kasimir.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
-        public void Add(BasketDetail basketDetail)
+        public async Task Add(BasketDetail basketDetail)
         {
-            _dbContext.BasketDetails.Add(basketDetail);
+           await _dbContext.BasketDetails.AddAsync(basketDetail);
         }
 
-        public void AddRange(IEnumerable<BasketDetail> basketDetails)
+        public async Task AddRange(IEnumerable<BasketDetail> basketDetails)
         {
-            _dbContext.BasketDetails.AddRange(basketDetails);
+            await _dbContext.BasketDetails.AddRangeAsync(basketDetails);
         }
 
         public void Delete(BasketDetail basketDetail)
         {
-            _dbContext.Remove(basketDetail);
+           _dbContext.Remove(basketDetail);
         }
 
-        public IEnumerable<BasketDetail> GetAllWithProducts()
+        public async Task<IEnumerable<BasketDetail>> GetAllWithProducts()
         {
-            return _dbContext.BasketDetails.Include(basketDtls => basketDtls.Product);
+            return await _dbContext.BasketDetails.Include(basketDtls => basketDtls.Product).ToListAsync();
         }
 
-        public IEnumerable<BasketDetail> GetByHeaderIdWithProducts(int id)
+        public async Task<IEnumerable<BasketDetail>> GetByHeaderIdWithProducts(int id)
         {
-            return _dbContext.BasketDetails.Include(basketDtls => basketDtls.Product).Where(basketDtl => basketDtl.BasketHeaderId == id);
+            return await _dbContext.BasketDetails.Include(basketDtls => basketDtls.Product).Where(basketDtl => basketDtl.BasketHeaderId == id).ToListAsync();
         }
 
-        public IEnumerable<BasketDetail> GetBySearchTerm(string term)
+        public async Task<IEnumerable<BasketDetail>> GetBySearchTerm(string term)
         {
-            return _dbContext.BasketDetails
+            return await _dbContext.BasketDetails
                 .Include(basketDtls => basketDtls.Product)
                 .Where(basketDtlsWithProduct =>
                 basketDtlsWithProduct.Product.Name.Contains(term) ||
                 basketDtlsWithProduct.BasketHeader.Id.ToString().Contains(term) ||
                 basketDtlsWithProduct.BasketHeader.BasketDate.ToString().Contains(term)
-                );
+                )
+                .ToListAsync();
         }
 
         public void Update(BasketDetail basketDetail)

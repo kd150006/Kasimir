@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Repositories
 {
@@ -17,14 +18,14 @@ namespace Kasimir.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public void Add(Stock stock)
+        public async Task Add(Stock stock)
         {
-            _dbContext.Add(stock);
+            await _dbContext.AddAsync(stock);
         }
 
-        public void AddRange(IEnumerable<Stock> stock)
+        public async Task AddRange(IEnumerable<Stock> stock)
         {
-            _dbContext.AddRange(stock);
+            await _dbContext.AddRangeAsync(stock);
         }
 
         public void Delete(Stock stock)
@@ -32,40 +33,40 @@ namespace Kasimir.Persistence.Repositories
             _dbContext.Remove(stock);
         }
 
-        public IEnumerable<Stock> GetAll()
+        public async Task<IEnumerable<Stock>> GetAll()
         {
-            return _dbContext.Stocks;
+            return await _dbContext.Stocks.ToListAsync();
         }
 
-        public Stock GetById(int id)
+        public async Task<Stock> GetById(int id)
         {
-            return _dbContext.Stocks.Find(id);
+            return await _dbContext.Stocks.FindAsync(id);
         }
 
-        public IEnumerable<Stock> GetByName(string name)
+        public async Task<IEnumerable<Stock>> GetByName(string name)
         {
-            return _dbContext.Stocks.Where(stock => stock.Name == name);
+            return await _dbContext.Stocks.Where(stock => stock.Name == name).ToListAsync();
         }
 
-        public IEnumerable<Stock> GetByStatus(string status)
+        public async Task<IEnumerable<Stock>> GetByStatus(string status)
         {
-            return _dbContext.Stocks.Where(stock => stock.Status == status);
+            return await _dbContext.Stocks.Where(stock => stock.Status == status).ToListAsync();
         }
 
-        public int GetQuantityOfAllStocks()
+        public async Task<int> GetQuantityOfAllStocks()
         {
-            var stockQuantity = _dbContext.Stocks
-                .Where(stock => stock.Status != ItemStatus.Deleted)                
+            var stockQuantity = await _dbContext.Stocks
+                .Where(stock => stock.Status != ItemStatus.Deleted)
                 .GroupBy(stock => stock.Id)
-                .Count();
+                .CountAsync();
             return (stockQuantity);
         }
 
-        public int GetQuantityOfStockById(int id)
+        public Task<int> GetQuantityOfStockById(int id)
         {
             return _dbContext.Stocks                
                 .Where(stock => stock.Id.Equals(id))
-                .Count();
+                .CountAsync();
         }
 
         public void Update(Stock stock)

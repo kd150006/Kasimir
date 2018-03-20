@@ -20,63 +20,60 @@ namespace Kasimir.WebAPI.Controllers
         }
         // GET: api/Baskets
         [HttpGet]
-        public IEnumerable<BasketHeader> Get()
+        public async Task<IActionResult> Get()
         {
-            var baskets = _uow.BasketHeaderRepository.GetAll();
-            return (baskets);
+            var baskets = await _uow.BasketHeaderRepository.GetAll();
+            return Ok(baskets);
         }
 
         // GET: api/Baskets/5
         [HttpGet("id/{id}")]
-        public BasketHeader Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var basket = _uow.BasketHeaderRepository
+            var basket = await _uow.BasketHeaderRepository
                                 .GetById(id);
-            return (basket);
+            return Ok(basket);
         }
         // GET: api/basketheaders/search/
         [HttpGet("search/{term}")]
-        public IEnumerable<BasketHeader> GetBySearchTerm(string term)
+        public async Task<IActionResult> GetBySearchTerm(string term)
         {
-            var results = _uow.BasketHeaderRepository.GetBySearchTerm(term);
-            return (results);
+            var results = await _uow.BasketHeaderRepository.GetBySearchTerm(term);
+            return Ok(results);
+        }
+        //GET: api/basketheaders/latest/
+        [HttpGet("latest/")]
+        public async Task<IActionResult> GetLatest()
+        {
+            var result = await _uow.BasketHeaderRepository.GetLatestBasketHeader();
+            return Ok(result);
         }
 
         // POST: api/Baskets
-        //[HttpPost]
-        //public void Post([FromBody]BasketHeader basketHeader)
-        //{
-        //    _uow.BasketHeaderRepository.Add(basketHeader);
-        //    _uow.Save();
-        //    //int newId = _uow.BasketHeaderRepository.GetLastInsertedBasketHeaderId();
-        //    //return newId;
-
-        //}
-
-        // POST: api/Baskets
         [HttpPost]
-        public void Post([FromBody]BasketHeader basketHeader)
+        public async Task<IActionResult> Post([FromBody]BasketHeader basketHeader)
         {
-            _uow.BasketHeaderRepository.Add(basketHeader);
-            _uow.Save();
+            await _uow.BasketHeaderRepository.Add(basketHeader);
+            await _uow.Save();
+            return Ok(basketHeader);
         }
 
         // PUT: api/Baskets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]BasketHeader basketHeader)
+        public async Task<IActionResult> Put(int id, [FromBody]BasketHeader basketHeader)
         {            
             _uow.BasketHeaderRepository.Update(basketHeader);
-            _uow.Save();
+            await _uow.Save();
+            return Ok(basketHeader);
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var basket = _uow.BasketHeaderRepository.GetById(id);
+            var basket = await _uow.BasketHeaderRepository.GetById(id);
             _uow.BasketHeaderRepository.Delete(basket);
+            return Ok(basket);
         }
-
-        //C
     }
 }

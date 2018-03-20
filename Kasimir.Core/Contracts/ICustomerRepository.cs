@@ -2,19 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kasimir.Core.Contracts
 {
     public interface ICustomerRepository
     {
-        void Add(Customer customer);
-        void AddRange(IEnumerable<Customer> customers);
+        Task Add(Customer customer);
+        Task AddRange(IEnumerable<Customer> customers);
         void Update(Customer customer);
         void Delete(Customer customer);
-        IEnumerable<Customer> GetAll();
-        Customer GetById(int id);
-        IEnumerable<Customer> GetNyNumber(string number);
-        IEnumerable<Customer> GetByStatus(string status);
-        IEnumerable<Customer> GetByFullname(string firstname, string lastname);
+        Task<IEnumerable<Customer>> GetAll();
+        Task<Customer> GetById(int id);
+        Task<IEnumerable<Customer>> GetNyNumber(string number);
+        Task<IEnumerable<Customer>> GetByStatus(string status);
+        Task<IEnumerable<Customer>> GetByFullname(string firstname, string lastname);
     }
 }
