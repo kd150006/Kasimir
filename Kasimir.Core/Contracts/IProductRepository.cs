@@ -12,8 +12,7 @@ namespace Kasimir.Core.Contracts
         void Delete(Product product);
         void Update(Product product);
         Product GetById(int id);
-        IEnumerable<Product> GetByName(string name);
-        IEnumerable<Product> GetByNumber(string number);
+        IEnumerable<Product> GetBySearchTerm(string searchTerm);        
         IEnumerable<Product> GetAll();
         IEnumerable<Product> GetAllByStockId(int id);
         int GetTotalStockQty(int id);

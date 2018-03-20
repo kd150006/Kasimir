@@ -7,12 +7,8 @@ namespace Kasimir.Core.Contracts
 {
     public interface ICashDrawerRepository
     {
-        double GetCurrentAmount();
-        CashDrawer GetById(int id);
-        CashDrawer GetByName(string name);
         IEnumerable<CashDrawer> GetAll();
-        void Delete(CashDrawer cashDrawer);
+        CashDrawer GetById(int id);
         void Update(CashDrawer cashDrawer);
-        void Add(CashDrawer cashDrawer);
     }
 }

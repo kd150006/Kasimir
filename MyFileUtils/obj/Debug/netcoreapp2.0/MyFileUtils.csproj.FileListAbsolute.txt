@@ -1,0 +1,9 @@
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\bin\Debug\netcoreapp2.0\MyFileUtils.deps.json
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\bin\Debug\netcoreapp2.0\MyFileUtils.dll
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\bin\Debug\netcoreapp2.0\MyFileUtils.pdb
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\obj\Debug\netcoreapp2.0\MyFileUtils.csprojResolveAssemblyReference.cache
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\obj\Debug\netcoreapp2.0\MyFileUtils.csproj.CoreCompileInputs.cache
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\obj\Debug\netcoreapp2.0\MyFileUtils.AssemblyInfoInputs.cache
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\obj\Debug\netcoreapp2.0\MyFileUtils.AssemblyInfo.cs
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\obj\Debug\netcoreapp2.0\MyFileUtils.dll
+C:\Users\mkl\source\repos\Kasimir\MyFileUtils\obj\Debug\netcoreapp2.0\MyFileUtils.pdb

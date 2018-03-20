@@ -16,46 +16,14 @@ namespace Kasimir.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public void Add(CashDrawer cashDrawer)
-        {
-            _dbContext.Add(cashDrawer);
-        }
-
-        public void Delete(CashDrawer cashDrawer)
-        {
-            cashDrawer.Status = ItemStatus.Deleted;
-            Update(cashDrawer);
-        }
-
         public IEnumerable<CashDrawer> GetAll()
         {
-            return _dbContext.CashDrawers
-                .Where(cashDrawer => cashDrawer.Status != ItemStatus.Deleted)
-                .ToList();
+            return _dbContext.CashDrawers.ToList();
         }
 
         public CashDrawer GetById(int id)
         {
-            return _dbContext
-                .CashDrawers
-                .Where(cd => cd.Id == id)
-                .Single();
-        }
-
-        public CashDrawer GetByName(string name)
-        {
-            return _dbContext
-                .CashDrawers
-                .Where(cd => cd.Name == name)
-                .Single();
-        }
-
-        public double GetCurrentAmount()
-        {
-            return _dbContext
-                .CashDrawers
-                .Select(cd => cd.Amount)
-                .Single();
+            return _dbContext.CashDrawers.Find(id);
         }
 
         public void Update(CashDrawer cashDrawer)

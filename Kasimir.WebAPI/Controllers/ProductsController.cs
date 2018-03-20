@@ -41,19 +41,13 @@ namespace Kasimir.WebAPI.Controllers
             return (product);
         }
         // GET products/name/Goo
-        [HttpGet("name/{name}")]
-        public IEnumerable<Product> GetByName(string name)
+        [HttpGet("search/{term}")]
+        public IEnumerable<Product> GetBySearchTerm(string term)
         {
-            var products = _uow.ProductRepository.GetByName(name);
+            var products = _uow.ProductRepository.GetBySearchTerm(term);
             return (products);
         }
-        
-        [HttpGet("number/{number}")]
-        public IEnumerable<Product> GetByNumber(string number)
-        {
-            var products = _uow.ProductRepository.GetByNumber(number);
-            return (products);
-        }
+
         // GET total quantiy of all products on a given stock
         [HttpGet("qty/{id}")]
         public int GetTotalQtyInStock(int id)

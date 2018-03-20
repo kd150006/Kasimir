@@ -11,12 +11,11 @@ namespace Kasimir.Persistence.Repositories
 {
     public class BasketHeaderRepository : IBasketHeaderRepository
     {
-        private readonly ApplicationDbContext _dbContext;
-        private List<Product> basketList;
+        private readonly ApplicationDbContext _dbContext;        
         public BasketHeaderRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-            basketList = new List<Product>();
+            
         }
 
         public void Add(BasketHeader basketHeader)
@@ -29,16 +28,6 @@ namespace Kasimir.Persistence.Repositories
             _dbContext.AddRange(basketHeaders);
         }
 
-        public void AddToBasket(Product product)
-        {
-            basketList.Add(product);
-        }
-
-        public void ClearBasket()
-        {
-            basketList.Clear();
-        }
-
         public void Delete(BasketHeader basketHeader)
         {            
             _dbContext.Remove(basketHeader);
@@ -46,8 +35,14 @@ namespace Kasimir.Persistence.Repositories
 
         public IEnumerable<BasketHeader> GetAll()
         {
-            return _dbContext.BasketHeaders                
-                .ToList();
+            return _dbContext.BasketHeaders;
+        }
+
+        public IEnumerable<BasketHeader> GetAllWithDetailsAndProducts()
+        {
+            return _dbContext.BasketHeaders
+                .Include(basketHeader => basketHeader.BasketDetails)
+                    .ThenInclude(basketDetails => basketDetails.Product);
         }
 
         public BasketHeader GetById(int id)
@@ -63,6 +58,17 @@ namespace Kasimir.Persistence.Repositories
                 .SingleOrDefault();
         }
 
+        public IEnumerable<BasketHeader> GetBySearchTerm(string term)
+        {
+            var results = _dbContext.BasketHeaders
+                .Include(basketHdr => basketHdr.BasketDetails)                    
+                .Where(basketHdrWithDtlsAndProducts => 
+                    basketHdrWithDtlsAndProducts.BasketDate.ToString().Contains(term) ||
+                    basketHdrWithDtlsAndProducts.Id.ToString().Contains(term));
+                                            
+            return (results);
+        }
+
         public int GetLastInsertedBasketHeaderId()
         {
             return _dbContext.BasketHeaders
@@ -71,9 +77,10 @@ namespace Kasimir.Persistence.Repositories
                 .FirstOrDefault();
         }
 
-        public void RemoveFromBasket(Product product)
+        public int GetMaxBasketNumber()
         {
-            basketList.Remove(product);            
+            throw new NotImplementedException();
+            //return _dbContext.BasketHeaders.Select(basketHeader => basketHeader.BasketNumber).Max();
         }
 
         public void Update(BasketHeader basketHeader)

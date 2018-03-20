@@ -22,41 +22,34 @@ namespace Kasimir.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<CashDrawer> Get()
         {
-            var cashDrawerOverview = _uow.CashDrawerRepository.GetAll();
-            return (cashDrawerOverview);
+            return _uow.CashDrawerRepository.GetAll();
         }
 
         // GET: api/CashDrawers/5
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public CashDrawer Get(int id)
         {
-            var cashDrawer = _uow.CashDrawerRepository.GetById(id);
-            return (cashDrawer);
+            return _uow.CashDrawerRepository.GetById(id);
         }
-        
-        // POST: api/CashDrawers
-        [HttpPost]
-        public void Post([FromBody]CashDrawer cashDrawer)
-        {
-            _uow.CashDrawerRepository.Add(cashDrawer);
-            _uow.Save();
-        }
-        
+
+        //// POST: api/CashDrawers
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
         // PUT: api/CashDrawers/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]CashDrawer cashDrawer)
         {
-            var cashDrawerToUpdate = _uow.CashDrawerRepository.GetById(id);
-            _uow.CashDrawerRepository.Update(cashDrawerToUpdate);
+            _uow.CashDrawerRepository.Update(cashDrawer);
             _uow.Save();
         }
         
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            var cashDrawer = _uow.CashDrawerRepository.GetById(id);
-            _uow.CashDrawerRepository.Delete(cashDrawer);
-        }
+        //// DELETE: api/ApiWithActions/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

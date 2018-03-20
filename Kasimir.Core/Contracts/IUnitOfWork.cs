@@ -9,9 +9,7 @@ namespace Kasimir.Core.Contracts
         IBasketDetailRepository BasketDetailRepository { get; }
         IBasketHeaderRepository BasketHeaderRepository { get; }
         ICashDrawerRepository CashDrawerRepository { get; }
-        ICustomerRepository CustomerRepository { get; }
-        IJournalRepository JournalRepository { get; }
-        IMeansOfPaymentRepository MeansOfPaymentRepository { get; }
+        ICustomerRepository CustomerRepository { get; }                
         IProductRepository ProductRepository { get; }        
         IStockRepository StockRepository { get; }
         IUserRepository UserRepository { get; }

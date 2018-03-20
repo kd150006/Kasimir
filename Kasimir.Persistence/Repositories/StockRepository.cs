@@ -55,8 +55,7 @@ namespace Kasimir.Persistence.Repositories
         public int GetQuantityOfAllStocks()
         {
             var stockQuantity = _dbContext.Stocks
-                .Where(stock => stock.Status != ItemStatus.Deleted)
-                //.Include(stock => stock.Stocks2Products)
+                .Where(stock => stock.Status != ItemStatus.Deleted)                
                 .GroupBy(stock => stock.Id)
                 .Count();
             return (stockQuantity);
@@ -64,8 +63,7 @@ namespace Kasimir.Persistence.Repositories
 
         public int GetQuantityOfStockById(int id)
         {
-            return _dbContext.Stocks
-                //.Include(stock => stock.Stocks2Products)
+            return _dbContext.Stocks                
                 .Where(stock => stock.Id.Equals(id))
                 .Count();
         }

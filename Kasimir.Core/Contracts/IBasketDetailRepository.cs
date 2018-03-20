@@ -12,7 +12,9 @@ namespace Kasimir.Core.Contracts
         void Update(BasketDetail basketDetail);
         void UpdateRange(IEnumerable<BasketDetail> basketDetails);
         void Delete(BasketDetail basketDetail);
-        IEnumerable<BasketDetail> GetAll();
-        BasketDetail GetById(int id);
+        IEnumerable<BasketDetail> GetAllWithProducts();
+        IEnumerable<BasketDetail> GetByHeaderIdWithProducts(int id);
+        IEnumerable<BasketDetail> GetBySearchTerm(string term);
+        
     }
 }

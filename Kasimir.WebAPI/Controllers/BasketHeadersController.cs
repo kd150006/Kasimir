@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Kasimir.WebAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Baskets")]
+    [Route("api/basketheaders")]
     public class BasketHeadersController : Controller
     {
         private readonly IUnitOfWork _uow;
@@ -22,31 +22,45 @@ namespace Kasimir.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<BasketHeader> Get()
         {
-            var baskets = _uow.BasketHeaderRepository
-                                .GetAll();
+            var baskets = _uow.BasketHeaderRepository.GetAll();
             return (baskets);
         }
 
         // GET: api/Baskets/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("id/{id}")]
         public BasketHeader Get(int id)
         {
             var basket = _uow.BasketHeaderRepository
-                                .GetByIdWithDetails(id);
+                                .GetById(id);
             return (basket);
+        }
+        // GET: api/basketheaders/search/
+        [HttpGet("search/{term}")]
+        public IEnumerable<BasketHeader> GetBySearchTerm(string term)
+        {
+            var results = _uow.BasketHeaderRepository.GetBySearchTerm(term);
+            return (results);
         }
 
         // POST: api/Baskets
+        //[HttpPost]
+        //public void Post([FromBody]BasketHeader basketHeader)
+        //{
+        //    _uow.BasketHeaderRepository.Add(basketHeader);
+        //    _uow.Save();
+        //    //int newId = _uow.BasketHeaderRepository.GetLastInsertedBasketHeaderId();
+        //    //return newId;
+
+        //}
+
+        // POST: api/Baskets
         [HttpPost]
-        public int Post([FromBody]BasketHeader basketHeader)
+        public void Post([FromBody]BasketHeader basketHeader)
         {
             _uow.BasketHeaderRepository.Add(basketHeader);
             _uow.Save();
-            int newId = _uow.BasketHeaderRepository.GetLastInsertedBasketHeaderId();
-            return newId;
-
         }
-        
+
         // PUT: api/Baskets/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]BasketHeader basketHeader)
@@ -62,5 +76,7 @@ namespace Kasimir.WebAPI.Controllers
             var basket = _uow.BasketHeaderRepository.GetById(id);
             _uow.BasketHeaderRepository.Delete(basket);
         }
+
+        //C
     }
 }

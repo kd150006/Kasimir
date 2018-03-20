@@ -18,9 +18,10 @@ namespace Kasimir.Core.Entities
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; }
         public double ProductPrice { get; set; }
-        public string ProductSerialNumber { get; set; }
-        public int? StockId { get; set; }
-        [ForeignKey(nameof(StockId))]
-        public Stock Stock { get; set; }
+        public int Quantity { get; set; }
+        //public int? StockId { get; set; }
+        //[ForeignKey(nameof(StockId))]
+        //public Stock Stock { get; set; }
+        //public string ProductSerialNumber { get; set; }
     }
 }

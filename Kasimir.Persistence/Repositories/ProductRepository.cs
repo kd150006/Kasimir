@@ -35,7 +35,7 @@ namespace Kasimir.Persistence.Repositories
         public IEnumerable<Product> GetAll()
         {
             return _dbContext.Products
-                .Include(product => product.Stock)                    
+                .Include(product => product.Stock)
                 .Where(product => product.Status != ItemStatus.Deleted)
                 .ToList();
         }
@@ -50,24 +50,18 @@ namespace Kasimir.Persistence.Repositories
         public Product GetById(int id)
         {
             return _dbContext.Products
-                .Include(product => product.Stock)                    
+                .Include(product => product.Stock)
                 .Where(product => product.Status != ItemStatus.Deleted && product.Id == id)
                 .SingleOrDefault();
-                
+
         }
 
-        public IEnumerable<Product> GetByName(string name)
+        public IEnumerable<Product> GetBySearchTerm(string searchTerm)
         {
             return _dbContext.Products
-                .Where(product => product.Status != ItemStatus.Deleted && product.Name.Contains(name))
-                .ToList();
-        }
-
-        public IEnumerable<Product> GetByNumber(string number)
-        {
-            return _dbContext.Products
-                .Where(product => product.Status != ItemStatus.Deleted && product.Number.Contains(number))
-                .ToList();
+                .Where(product => product.Status != ItemStatus.Deleted &&
+                    (product.Name.Contains(searchTerm) || product.Number.Contains(searchTerm) || product.Barcode.Contains(searchTerm)))
+                    .ToList();
         }
 
         public int GetTotalStockQty(int id)
