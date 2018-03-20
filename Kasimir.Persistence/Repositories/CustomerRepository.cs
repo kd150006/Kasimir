@@ -1,6 +1,7 @@
 ﻿using Kasimir.Core;
 using Kasimir.Core.Contracts;
 using Kasimir.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace Kasimir.Persistence.Repositories
             return await _dbContext.Customers.Where(customer => customer.Status == status).ToListAsync();
         }
 
-        public Task<IEnumerable<Customer>> GetNyNumber(string number)
+        public async Task<IEnumerable<Customer>> GetNyNumber(string number)
         {
             return await _dbContext.Customers.Where(customer => customer.Number == number).ToListAsync();
         }

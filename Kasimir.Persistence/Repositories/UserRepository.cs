@@ -1,6 +1,7 @@
 ﻿using Kasimir.Core;
 using Kasimir.Core.Contracts;
 using Kasimir.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

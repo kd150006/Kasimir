@@ -38,7 +38,7 @@ namespace Kasimir.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User user)
         {
-            _uow.UserRepository.Add(user);
+            await _uow.UserRepository.Add(user);
             await _uow.Save();
             return Ok(user);
         }
