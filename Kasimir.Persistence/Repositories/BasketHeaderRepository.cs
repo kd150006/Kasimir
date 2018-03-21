@@ -38,6 +38,15 @@ namespace Kasimir.Persistence.Repositories
             return await _dbContext.BasketHeaders.ToListAsync();
         }
 
+        public async Task<IEnumerable<BasketHeader>> GetAllSalesTrx(string trxType)
+        {
+            var result = await _dbContext.BasketHeaders
+                    .Where(basketHeader => basketHeader.TransactionType.ToLower() == trxType.ToLower() &&
+                    basketHeader.Returned == false)
+                    .ToListAsync();
+            return result;
+        }
+
         public async Task<IEnumerable<BasketHeader>> GetAllWithDetailsAndProducts()
         {
             return await _dbContext.BasketHeaders
@@ -64,8 +73,7 @@ namespace Kasimir.Persistence.Repositories
                 .Include(basketHdr => basketHdr.BasketDetails)
                 .Where(basketHdrWithDtlsAndProducts =>
                     basketHdrWithDtlsAndProducts.BasketDate.ToString().Contains(term) ||
-                    basketHdrWithDtlsAndProducts.Id.ToString().Contains(term)
-                )
+                    basketHdrWithDtlsAndProducts.Id.ToString().Contains(term))
                 .ToListAsync();
                                             
             return (results);
@@ -78,7 +86,7 @@ namespace Kasimir.Persistence.Repositories
                     .FirstOrDefaultAsync();
         }
 
-        public void Update(BasketHeader basketHeader)
+        public void Update (BasketHeader basketHeader)
         {
             _dbContext.Update(basketHeader);
         }

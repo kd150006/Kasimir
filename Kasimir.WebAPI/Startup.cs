@@ -28,8 +28,6 @@ namespace Kasimir.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //AutoMapper
-
             services.AddCors();
             services.AddScoped<IUnitOfWork, UnitOfWork>(serviceProvider => new UnitOfWork());
 
@@ -49,7 +47,8 @@ namespace Kasimir.WebAPI
             app.UseCors(builder =>
                 builder.AllowAnyOrigin()
                 .AllowAnyHeader()
-                .AllowAnyMethod());
+                .AllowAnyMethod()
+                .Build());
             app.UseMvc();            
         }
     }

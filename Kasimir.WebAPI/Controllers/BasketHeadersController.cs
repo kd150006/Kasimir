@@ -48,6 +48,13 @@ namespace Kasimir.WebAPI.Controllers
             var result = await _uow.BasketHeaderRepository.GetLatestBasketHeader();
             return Ok(result);
         }
+        //GET: api/basketheaders/trx/
+        [HttpGet("trx/{trxType}")]
+        public async Task<IActionResult> GetAllSalesTrx(string trxType)
+        {
+            var result = await _uow.BasketHeaderRepository.GetAllSalesTrx(trxType);
+            return Ok(result);
+        }
 
         // POST: api/Baskets
         [HttpPost]

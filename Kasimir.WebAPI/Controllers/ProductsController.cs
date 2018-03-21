@@ -71,7 +71,7 @@ namespace Kasimir.WebAPI.Controllers
         {            
             _uow.ProductRepository.Update(product);
             await _uow.Save();
-            return Ok(product);
+            return Ok();
         }
 
         // DELETE products/7

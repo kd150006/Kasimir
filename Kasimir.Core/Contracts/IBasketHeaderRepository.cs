@@ -11,6 +11,7 @@ namespace Kasimir.Core.Contracts
         Task<IEnumerable<BasketHeader>> GetAll();
         Task<IEnumerable<BasketHeader>> GetAllWithDetailsAndProducts();
         Task<BasketHeader> GetById(int id);
+        Task<IEnumerable<BasketHeader>> GetAllSalesTrx(string trxType);
         Task<BasketHeader> GetByIdWithDetails(int id);
         Task<BasketHeader> GetLatestBasketHeader();        
         Task Add(BasketHeader basketHeader);

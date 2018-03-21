@@ -16,6 +16,7 @@ namespace Kasimir.Core.Entities
         [Required]
         public string TransactionType { get; set; }
         [Required]
+        public bool Returned { get; set; }
         public ICollection<BasketDetail> BasketDetails { get; set; }
         public BasketHeader()
         {

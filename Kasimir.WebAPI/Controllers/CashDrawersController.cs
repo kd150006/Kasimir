@@ -38,6 +38,10 @@ namespace Kasimir.WebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]CashDrawer cashDrawer)
         {
+            if (cashDrawer == null)
+            {
+                return NotFound();
+            }
             _uow.CashDrawerRepository.Update(cashDrawer);
             await _uow.Save();
             return Ok(cashDrawer);
