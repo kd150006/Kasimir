@@ -68,8 +68,21 @@ namespace Kasimir.WebAPI.Controllers
         // PUT products/7
         [HttpPut("{id}")]
         public async Task<IActionResult> Put (int id, [FromBody]Product product)
-        {            
+        {
+            if (product.Stock == null)
+            {
+                product.StockId = null;
+            }
             _uow.ProductRepository.Update(product);
+            await _uow.Save();
+            return Ok();
+        }
+
+        //PUT products/batch
+        [HttpPut("batch")]
+        public async Task<IActionResult> Put ([FromBody] List<Product> products)
+        {
+            _uow.ProductRepository.UpdateRange(products);
             await _uow.Save();
             return Ok();
         }

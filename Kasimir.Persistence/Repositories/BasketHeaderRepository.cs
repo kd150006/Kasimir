@@ -79,9 +79,10 @@ namespace Kasimir.Persistence.Repositories
             return (results);
         }
 
-        public async Task<BasketHeader> GetLatestBasketHeader()
+        public async Task<BasketHeader> GetLatestBasketHeader(string trxType)
         {
             return await _dbContext.BasketHeaders
+                    .Where(basketHeader => basketHeader.TransactionType == trxType)
                     .OrderByDescending(basketHeader => basketHeader.Id)
                     .FirstOrDefaultAsync();
         }

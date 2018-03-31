@@ -12,6 +12,7 @@ namespace Kasimir.Core.Contracts
         Task Add(Product product);
         void Delete(Product product);
         void Update(Product product);
+        void UpdateRange(List<Product> products);
         Task<Product> GetById(int id);
         Task<IEnumerable<Product>> GetBySearchTerm(string searchTerm);        
         Task<IEnumerable<Product>> GetAll();

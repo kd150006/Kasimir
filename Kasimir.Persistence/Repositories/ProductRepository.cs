@@ -78,5 +78,10 @@ namespace Kasimir.Persistence.Repositories
         {
             _dbContext.Update(product);
         }
+
+        public void UpdateRange(List<Product> products)
+        {
+            _dbContext.UpdateRange(products);
+        }
     }
 }

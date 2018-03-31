@@ -13,7 +13,7 @@ namespace Kasimir.Core.Contracts
         Task<BasketHeader> GetById(int id);
         Task<IEnumerable<BasketHeader>> GetAllSalesTrx(string trxType);
         Task<BasketHeader> GetByIdWithDetails(int id);
-        Task<BasketHeader> GetLatestBasketHeader();        
+        Task<BasketHeader> GetLatestBasketHeader(string trxType);        
         Task Add(BasketHeader basketHeader);
         Task AddRange(IEnumerable<BasketHeader> basketHeaders);
         void Update(BasketHeader basketHeader);

@@ -42,10 +42,14 @@ namespace Kasimir.WebAPI.Controllers
             return Ok(results);
         }
         //GET: api/basketheaders/latest/
-        [HttpGet("latest/")]
-        public async Task<IActionResult> GetLatest()
+        [HttpGet("latest/{trxType}")]
+        public async Task<IActionResult> GetLatest(string trxType)
         {
-            var result = await _uow.BasketHeaderRepository.GetLatestBasketHeader();
+            if (trxType == null)
+            {
+                return NotFound();
+            }
+            var result = await _uow.BasketHeaderRepository.GetLatestBasketHeader(trxType);
             return Ok(result);
         }
         //GET: api/basketheaders/trx/
