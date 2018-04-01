@@ -11,15 +11,15 @@ using System;
 namespace Kasimir.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180315174335_ChangedStockStatusToStockState")]
-    partial class ChangedStockStatusToStockState
+    [Migration("20180401183151_MariusInitialCreate")]
+    partial class MariusInitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011");
 
             modelBuilder.Entity("Kasimir.Core.Entities.BasketDetail", b =>
                 {
@@ -32,21 +32,17 @@ namespace Kasimir.Persistence.Migrations
 
                     b.Property<double>("ProductPrice");
 
-                    b.Property<string>("ProductSerialNumber");
+                    b.Property<int>("Quantity");
 
-                    b.Property<byte[]>("RowVersion")
+                    b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
-
-                    b.Property<int?>("StockId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BasketHeaderId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("StockId");
 
                     b.ToTable("BasketDetails");
                 });
@@ -58,11 +54,18 @@ namespace Kasimir.Persistence.Migrations
 
                     b.Property<DateTime>("BasketDate");
 
-                    b.Property<byte[]>("RowVersion")
+                    b.Property<int>("ReferenceBasketHeaderId");
+
+                    b.Property<bool>("Returned");
+
+                    b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<double>("SumTotal");
+
+                    b.Property<string>("TransactionType")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -74,25 +77,13 @@ namespace Kasimir.Persistence.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("Amount");
+                    b.Property<double>("Balance");
 
-                    b.Property<int?>("MeansOfPaymentId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<byte[]>("RowVersion")
+                    b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(1);
-
                     b.HasKey("Id");
-
-                    b.HasIndex("MeansOfPaymentId");
 
                     b.ToTable("CashDrawers");
                 });
@@ -116,7 +107,7 @@ namespace Kasimir.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<byte[]>("RowVersion")
+                    b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
@@ -124,57 +115,11 @@ namespace Kasimir.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(1);
 
-                    b.Property<int?>("TelephoneNumber");
+                    b.Property<string>("TelephoneNumber");
 
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("Kasimir.Core.Entities.Journal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BasketHeaderId");
-
-                    b.Property<DateTime>("DateOfTransaction");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.Property<string>("TransactionType")
-                        .IsRequired()
-                        .HasMaxLength(1);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasketHeaderId");
-
-                    b.ToTable("Journals");
-                });
-
-            modelBuilder.Entity("Kasimir.Core.Entities.MeansOfPayment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(1);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MeansOfPayments");
                 });
 
             modelBuilder.Entity("Kasimir.Core.Entities.Product", b =>
@@ -196,7 +141,7 @@ namespace Kasimir.Persistence.Migrations
 
                     b.Property<int?>("Quantity");
 
-                    b.Property<byte[]>("RowVersion")
+                    b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
@@ -222,11 +167,11 @@ namespace Kasimir.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<byte[]>("RowVersion")
+                    b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<string>("State")
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(1);
 
@@ -254,7 +199,7 @@ namespace Kasimir.Persistence.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
-                    b.Property<byte[]>("RowVersion")
+                    b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
@@ -279,25 +224,6 @@ namespace Kasimir.Persistence.Migrations
                     b.HasOne("Kasimir.Core.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Kasimir.Core.Entities.Stock", "Stock")
-                        .WithMany()
-                        .HasForeignKey("StockId");
-                });
-
-            modelBuilder.Entity("Kasimir.Core.Entities.CashDrawer", b =>
-                {
-                    b.HasOne("Kasimir.Core.Entities.MeansOfPayment", "MeansOfPayment")
-                        .WithMany()
-                        .HasForeignKey("MeansOfPaymentId");
-                });
-
-            modelBuilder.Entity("Kasimir.Core.Entities.Journal", b =>
-                {
-                    b.HasOne("Kasimir.Core.Entities.BasketHeader", "BasketHeader")
-                        .WithMany()
-                        .HasForeignKey("BasketHeaderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

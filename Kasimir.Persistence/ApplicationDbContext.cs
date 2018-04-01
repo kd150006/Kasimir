@@ -23,8 +23,12 @@ namespace Kasimir.Persistence
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             var configuration = builder.Build();
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(connectionString);
+            // IIS
+            //var connectionString = configuration.GetConnectionString("DefaultConnection");
+            //optionsBuilder.UseSqlServer(connectionString);
+            // MARIADB
+            var connectionString = configuration.GetConnectionString("MariaDbConnection");
+            optionsBuilder.UseMySql(connectionString);
 
             var log = new LoggerConfiguration()
                 .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)

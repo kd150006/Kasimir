@@ -33,7 +33,7 @@ namespace Kasimir.WebAPI.Controllers
             var result = await _uow.CashDrawerRepository.GetById(id);
             return Ok(result);
         }
-
+        
         // PUT: api/CashDrawers/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]CashDrawer cashDrawer)

@@ -12,6 +12,8 @@ namespace Kasimir.Core.Contracts
         public int Id { get; set; }
         //MySql needs to have rowversion to be of DateTime instead of byte[]
         [Timestamp]
-        public byte[] RowVersion { get; set; }
+        public DateTime RowVersion { get; set; }
+        //[Timestamp]
+        //public byte[] RowVersion { get; set; }
     }
 }

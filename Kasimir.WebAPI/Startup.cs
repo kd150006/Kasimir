@@ -42,7 +42,7 @@ namespace Kasimir.WebAPI
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();                
             }
             app.UseCors(builder =>
                 builder.AllowAnyOrigin()

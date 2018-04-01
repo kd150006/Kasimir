@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Kasimir.Persistence.Tests
 {
@@ -20,13 +21,13 @@ namespace Kasimir.Persistence.Tests
         }
 
         [TestMethod]
-        public void DBContext_01_ImportCsv_ShouldReturn24ProductsWithSerialNumbersAndStocks()
+        public async Task DBContext_01_ImportCsv_ShouldReturn24ProductsWithSerialNumbersAndStocks()
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
                 var products = ImportController.ReadProductsFromCsv().ToList();
-                uow.ProductRepository.AddRange(products);
-                uow.Save();
+                await uow.ProductRepository.AddRange(products);
+                await uow.Save();
             }
         }
     }
