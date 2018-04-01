@@ -79,6 +79,13 @@ namespace Kasimir.Persistence.Repositories
             return (results);
         }
 
+        public async Task<BasketHeader> GetLatest()
+        {
+            return await _dbContext.BasketHeaders
+                .OrderByDescending(basketHeader => basketHeader.Id)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<BasketHeader> GetLatestBasketHeader(string trxType)
         {
             return await _dbContext.BasketHeaders

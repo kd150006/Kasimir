@@ -42,8 +42,15 @@ namespace Kasimir.WebAPI.Controllers
             return Ok(results);
         }
         //GET: api/basketheaders/latest/
+        [HttpGet("latest")]
+        public async Task<IActionResult> GetLatest()
+        {
+            var result = await _uow.BasketHeaderRepository.GetLatest();
+            return Ok(result);
+        }
+        //GET: api/basketheaders/latest/sale
         [HttpGet("latest/{trxType}")]
-        public async Task<IActionResult> GetLatest(string trxType)
+        public async Task<IActionResult> GetLatestByTrx(string trxType)
         {
             if (trxType == null)
             {
@@ -54,7 +61,7 @@ namespace Kasimir.WebAPI.Controllers
         }
         //GET: api/basketheaders/trx/
         [HttpGet("trx/{trxType}")]
-        public async Task<IActionResult> GetAllSalesTrx(string trxType)
+        public async Task<IActionResult> GetAllByTrx(string trxType)
         {
             var result = await _uow.BasketHeaderRepository.GetAllSalesTrx(trxType);
             return Ok(result);
